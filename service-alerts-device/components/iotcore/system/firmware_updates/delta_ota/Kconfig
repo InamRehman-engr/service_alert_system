@@ -1,0 +1,17 @@
+menu "Delta OTA config"
+
+    config ENABLE_DELTA_OTA
+        bool "Enable support for Delta OTA"
+        default n
+        help
+            Enable or disable support for Delta OTA
+    
+    config DELTA_MAGIC
+        int "Magic word for Delta OTA"
+        default 4241350160
+        range 0 4294967295
+        help
+            Image Magic given as first 4 bytes of image header
+    
+        
+endmenu

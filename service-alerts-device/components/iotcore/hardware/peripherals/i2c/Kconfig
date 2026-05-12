@@ -1,0 +1,5 @@
+menu "I2C Configuration"   
+    config SMBUS_SUPPORT
+        bool "Enable SMBUS"
+        default false
+endmenu

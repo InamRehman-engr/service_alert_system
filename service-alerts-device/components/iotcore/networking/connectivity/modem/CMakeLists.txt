@@ -1,0 +1,8 @@
+if(CONFIG_PPP_SUPPORT)
+if (CONFIG_ENABLE_MODEM)
+include(${CMAKE_CURRENT_LIST_DIR}/esp_modem/CMakeLists.txt)
+list(APPEND srcs "${CMAKE_CURRENT_LIST_DIR}/modem.c")
+list(APPEND includes "${CMAKE_CURRENT_LIST_DIR}/")
+list(APPEND cmps "esp_modem")
+endif()
+endif()

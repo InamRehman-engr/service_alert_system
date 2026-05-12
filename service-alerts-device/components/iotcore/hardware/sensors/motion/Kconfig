@@ -1,0 +1,23 @@
+menu "LSM6DSM"
+    config ENABLE_LSM6DSM
+    bool "Enable LSM6DSM Sensor"
+    default n
+    config SELF_TEST_ENABLE
+    bool "Enable SELF TEST"
+    default y
+endmenu
+
+config ENABLE_MPU6050
+bool "Enable MPU6050 Sensor"
+default n
+
+config ENABLE_MPU9250
+bool "Enable MPU9250 Sensor"
+default n
+
+
+menu "ICM20602"
+    config ENABLE_ICM20602
+        bool "Enable ICM20602"
+        default n
+endmenu

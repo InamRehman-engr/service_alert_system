@@ -1,0 +1,7 @@
+config ENABLE_PPSI262
+    bool "Enable PPSI262"
+    default n
+
+config ENABLE_MAX30102
+    bool "Enable MAX30102 Sensor"
+    default n

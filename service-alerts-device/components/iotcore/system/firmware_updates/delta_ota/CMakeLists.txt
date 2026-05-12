@@ -1,0 +1,6 @@
+if(CONFIG_ENABLE_OTA)
+    include(${CMAKE_CURRENT_LIST_DIR}/delta_ota_component/CMakeLists.txt)
+    list(APPEND srcs "${CMAKE_CURRENT_LIST_DIR}/delta_ota.c")
+    list(APPEND includes "${CMAKE_CURRENT_LIST_DIR}/")
+    list(APPEND cmps "delta_ota_component")
+endif()

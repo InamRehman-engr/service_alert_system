@@ -1,0 +1,31 @@
+menu "Utils"
+    config ENABLE_JSON
+        bool "Enable JSON"
+        default y
+        help
+            Enable or disable JSON.
+
+    config ENABLE_ERROR_HANDLING
+        bool "Enable Error handling"
+        default y
+        help
+            Enable or disable error handling.
+
+    config ENABLE_DC_CODES
+        bool "Enable DC Codes"
+        default y
+        help
+            Enable or disable DC codes.
+
+    config ENABLE_UTILITY
+        bool "Enable Utility"
+        default y
+        help 
+            Enable or disable Utility
+
+    config ENABLE_URL_ENCODING
+        bool "Enable URL Encoding"
+        default y
+        help 
+            Enable or disable URL Encoding.
+endmenu

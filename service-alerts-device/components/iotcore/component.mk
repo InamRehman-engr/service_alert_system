@@ -1,0 +1,2 @@
+COMPONENT_ADD_INCLUDEDIRS := networking/connectivity/wifi networking/connectivity/ble networking/connectivity/gsm hardware/peripherals/rtc output_devices/displays/led networking/protocols/http/http_server utils/json utils/error_handling
+COMPONENT_SRCDIRS := networking/connectivity/wifi networking/connectivity/ble networking/connectivity/gsm hardware/peripherals/rtc output_devices/displays/led networking/protocols/http/http_server utils/json utils/error_handling

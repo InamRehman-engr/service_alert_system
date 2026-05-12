@@ -1,0 +1,187 @@
+menu "Sensors"
+
+    menu "Air Quality Sensor"
+        rsource "air_quality/Kconfig"
+    endmenu
+
+    menu "Energy Metering"
+        rsource "energy/Kconfig"
+    endmenu
+
+    menu "Current Sensors"
+            rsource "current/Kconfig"
+    endmenu
+
+    menu "Gas Sensors"
+        config ENABLE_MC106
+            bool "Enable MC106 Sensor"
+            default n
+
+            config MC106_ADC_UNIT
+                int "ADC Unit"
+                depends on ENABLE_MC106
+                default 2
+            config MC106_ADC_CHANNEL_A
+                int "ADC Unit"
+                depends on ENABLE_MC106
+                default 1
+            config MC106_ADC_CHANNEL_B
+                int "ADC Unit"
+                depends on ENABLE_MC106
+                default 2
+
+        config ENABLE_MICS5524
+            bool "Enable MICS5524 Sensor"
+            default n
+
+            config MiCS_5524_ADC_UNIT
+                int "ADC Unit"
+                default 1
+                depends on ENABLE_MICS5524
+
+            config MiCS_5524_ADC_CHANNEL
+                int "ADC Unit"
+                default 1
+                depends on ENABLE_MICS5524
+
+
+        config ENABLE_MP5
+            bool "Enable MP5 Sensor"
+            default n
+
+            config MP_5_ADC_UNIT
+                int "ADC Unit"
+                depends on ENABLE_MP5
+                range 1 2
+                default 2
+
+            config MP_5_ADC_CHANNEL_A
+                int "ADC Unit"
+                depends on ENABLE_MP5
+                default 1
+
+            config MP_5_ADC_CHANNEL_B
+                int "ADC Unit"
+                depends on ENABLE_MP5
+                default 2
+
+            
+        config ENABLE_MQ7B
+            bool "Enable MQ7B Sensor"
+            default n
+
+        config MQ_7b_ADC_UNIT
+            int "ADC Unit"
+            depends on ENABLE_MQ7B
+            range 1 2
+            default 2
+
+        config MQ_7b_ADC_CHANNEL_A
+            int "ADC Unit"
+            depends on ENABLE_MQ7B
+            default 1
+
+        config MQ_7b_ADC_CHANNEL_B
+            int "ADC Unit"
+            depends on ENABLE_MQ7B
+            default 2
+
+    endmenu
+
+    menu "Heart Rate Sensor"
+            rsource "heart_rate_monitor/Kconfig"
+    endmenu
+
+    menu "Temperature & Humidity Sensors"
+        rsource "humidity_temperature/Kconfig"
+    endmenu
+
+    menu "Motion Sensors"
+        rsource "motion/Kconfig"
+    endmenu
+
+    menu "Position Sensor"
+        rsource "position_sensor/Kconfig"
+    endmenu
+
+    menu "Pressure Sensors"
+        rsource "pressure/Kconfig"
+    endmenu
+
+    menu "Light Sensors"
+        config ENABLE_OPT101
+            bool "Enable OPT101 Sensor"
+            default n
+
+            config OPT101_ADC_UNIT
+                int "ADC Unit"
+                range 1 2
+                default 2
+                depends on ENABLE_OPT101
+
+            config OPT101_ADC_CHANNEL
+                int "ADC Channel to be Used"
+                range 0 10
+                default 0
+                depends on ENABLE_OPT101
+
+        config ENABLE_OPT3001
+            bool "Enable OPT3001 Sensor"
+            default n
+
+        config ENABLE_TSL2561
+            bool "Enable TSL2561 Sensor"
+            default n
+
+            config TSL2561_I2C_ADDRESS
+                hex "I2C Address for TSL2561 device"
+                default 0x49
+                depends on ENABLE_TSL2561
+                help
+                    I2C address for TSL2561 device.
+                    If ADDR Sel pin is tied to GND, the address is 0x29.
+                    If ADDR Sel pin is floating, the address is 0x39.
+                    If ADDR Sel pin is tied to VCC, the address is 0x49.
+    endmenu
+        menu "Sensor Wrapper lib for Temperature and humidity sensors"
+        config ENABLE_TEMPERATURE_HUMIDITY_SENSOR_WRAPPER
+            bool "Enable Sensor wrapper library"
+            default n
+            help
+                Enable or disable TH wrapper
+
+            config TEMP_HUM_I2C_SDA_PIN
+                int "SDA PIN"
+                default 26
+                depends on ENABLE_TEMPERATURE_HUMIDITY_SENSOR_WRAPPER
+                help
+                    SDA PIN FOR SPECIFIC SENSOR
+
+            config TEMP_HUM_I2C_SCL_PIN
+                int "SCL PIN"
+                default 27
+                depends on ENABLE_TEMPERATURE_HUMIDITY_SENSOR_WRAPPER
+                help
+                    SCL PIN FOR SPECIFIC SENSOR
+        
+            config I2C_MASTER_SCL
+                int "I2C Master SCL GPIO number"
+                range 0 34
+                default 23
+                depends on ENABLE_TEMPERATURE_HUMIDITY_SENSOR_WRAPPER
+                help
+                    GPIO number (IOxx) for I2C SCL.
+                    Some GPIOs are used for other purposes (flash connections, etc.) and cannot be used.
+                    GPIOs 35-39 are input-only so cannot be used to drive the One Wire Bus.
+
+            config I2C_MASTER_SDA
+                int "I2C Master SDA GPIO number"
+                range 0 34
+                default 22
+                depends on ENABLE_TEMPERATURE_HUMIDITY_SENSOR_WRAPPER
+                help
+                    GPIO number (IOxx) for I2C SDA.
+                    Some GPIOs are used for other purposes (flash connections, etc.) and cannot be used.
+                    GPIOs 35-39 are input-only so cannot be used to drive the One Wire Bus.
+    endmenu
+endmenu

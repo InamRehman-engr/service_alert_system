@@ -1,0 +1,10 @@
+menu "Communication Interfaces"
+    config ENABLE_MODBUS
+        bool "Enable Modbus"
+        default n
+
+    config ENABLE_RS485
+        bool "Enable RS485"
+        default n
+
+endmenu

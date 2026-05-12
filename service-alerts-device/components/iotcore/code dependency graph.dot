@@ -1,0 +1,234 @@
+digraph codeviz {
+    splines=true
+    sep="+15,15"
+    overlap=scalexy
+
+    node [shape=Mrecord, fontsize=12]
+
+    node [fillcolor="#ff9999", style=filled] "app/app_iotcore.c"                                                          [label = "app/app_iotcore.c"]
+    node [fillcolor="#ff9999", style=filled] "app/app_iotcore_mqtt_cbs.c"                                                 [label = "app/app_iotcore_mqtt_cbs.c"]
+    node [fillcolor="#ff9999", style=filled] "app/app_iotcore_mqtt_pub_sub_events.c"                                      [label = "app/app_iotcore_mqtt_pub_sub_events.c"]
+    node [fillcolor="#ff9999", style=filled] "app/app_iotcore_network_event_handler.c"                                    [label = "app/app_iotcore_network_event_handler.c"]
+    node [fillcolor="#ff9999", style=filled] "app/app_iotcore_ota_event_handler.c"                                        [label = "app/app_iotcore_ota_event_handler.c"]
+    node [fillcolor="#ccccff", style=filled] "app/includes/app_iotcore.h"                                                 [label = "app/includes/app_iotcore.h"]
+    node [fillcolor="#ccccff", style=filled] "app/priv_includes/app_iotcore_mqtt_cbs.h"                                   [label = "app/priv_includes/app_iotcore_mqtt_cbs.h"]
+    node [fillcolor="#ccccff", style=filled] "app/priv_includes/app_iotcore_mqtt_pub_sub_events.h"                        [label = "app/priv_includes/app_iotcore_mqtt_pub_sub_events.h"]
+    node [fillcolor="#ccccff", style=filled] "app/priv_includes/app_iotcore_network_event_handler.h"                      [label = "app/priv_includes/app_iotcore_network_event_handler.h"]
+    node [fillcolor="#ccccff", style=filled] "app/priv_includes/app_iotcore_ota_event_handler.h"                          [label = "app/priv_includes/app_iotcore_ota_event_handler.h"]
+    node [fillcolor="#ff9999", style=filled] "core/battery_charging/battery_charging.c"                                   [label = "core/battery_charging/battery_charging.c"]
+    node [fillcolor="#ccccff", style=filled] "core/battery_charging/battery_charging.h"                                   [label = "core/battery_charging/battery_charging.h"]
+    node [fillcolor="#ff9999", style=filled] "core/billing/billing.c"                                                     [label = "core/billing/billing.c"]
+    node [fillcolor="#ccccff", style=filled] "core/billing/billing.h"                                                     [label = "core/billing/billing.h"]
+    node [fillcolor="#ff9999", style=filled] "core/events/data_events/data_modals/mqtt_data_model.c"                      [label = "core/events/data_events/data_modals/mqtt_data_model.c"]
+    node [fillcolor="#ccccff", style=filled] "core/events/data_events/data_modals/mqtt_data_model.h"                      [label = "core/events/data_events/data_modals/mqtt_data_model.h"]
+    node [fillcolor="#ff9999", style=filled] "core/events/data_events/iotcore_data_events.c"                              [label = "core/events/data_events/iotcore_data_events.c"]
+    node [fillcolor="#ccccff", style=filled] "core/events/data_events/iotcore_data_events.h"                              [label = "core/events/data_events/iotcore_data_events.h"]
+    node [fillcolor="#ff9999", style=filled] "core/events/error_events/iotcore_error_events.c"                            [label = "core/events/error_events/iotcore_error_events.c"]
+    node [fillcolor="#ccccff", style=filled] "core/events/error_events/iotcore_error_events.h"                            [label = "core/events/error_events/iotcore_error_events.h"]
+    node [fillcolor="#ccccff", style=filled] "core/events/info_events/data_modals/system_info_data_model.h"               [label = "core/events/info_events/data_modals/system_info_data_model.h"]
+    node [fillcolor="#ff9999", style=filled] "core/events/info_events/iotcore_info_events.c"                              [label = "core/events/info_events/iotcore_info_events.c"]
+    node [fillcolor="#ccccff", style=filled] "core/events/info_events/iotcore_info_events.h"                              [label = "core/events/info_events/iotcore_info_events.h"]
+    node [fillcolor="#ff9999", style=filled] "core/events/iotcore_events.c"                                               [label = "core/events/iotcore_events.c"]
+    node [fillcolor="#ccccff", style=filled] "core/events/iotcore_events.h"                                               [label = "core/events/iotcore_events.h"]
+    node [fillcolor="#ff9999", style=filled] "core/iotcore_server_apis/iotcore_server_apis.c"                             [label = "core/iotcore_server_apis/iotcore_server_apis.c"]
+    node [fillcolor="#ccccff", style=filled] "core/iotcore_server_apis/iotcore_server_apis.h"                             [label = "core/iotcore_server_apis/iotcore_server_apis.h"]
+    node [fillcolor="#ff9999", style=filled] "networking/connectivity/ble/app_ble.c"                                      [label = "networking/connectivity/ble/app_ble.c"]
+    node [fillcolor="#ccccff", style=filled] "networking/connectivity/ble/app_ble.h"                                      [label = "networking/connectivity/ble/app_ble.h"]
+    node [fillcolor="#ff9999", style=filled] "networking/connectivity/ble/scli.c"                                         [label = "networking/connectivity/ble/scli.c"]
+    node [fillcolor="#ff9999", style=filled] "networking/connectivity/connectivity.c"                                     [label = "networking/connectivity/connectivity.c"]
+    node [fillcolor="#ccccff", style=filled] "networking/connectivity/connectivity.h"                                     [label = "networking/connectivity/connectivity.h"]
+    node [fillcolor="#ccccff", style=filled] "networking/connectivity/connectivity_overrides.h"                           [label = "networking/connectivity/connectivity_overrides.h"]
+    node [fillcolor="#ff9999", style=filled] "networking/connectivity/ethernet/ethernet.c"                                [label = "networking/connectivity/ethernet/ethernet.c"]
+    node [fillcolor="#ccccff", style=filled] "networking/connectivity/ethernet/ethernet.h"                                [label = "networking/connectivity/ethernet/ethernet.h"]
+    node [fillcolor="#ff9999", style=filled] "networking/connectivity/modem/gnss_provider/dce_gnss_wrapper.c"             [label = "networking/connectivity/modem/gnss_provider/dce_gnss_wrapper.c"]
+    node [fillcolor="#ccccff", style=filled] "networking/connectivity/modem/gnss_provider/nmea_parser.h"                  [label = "networking/connectivity/modem/gnss_provider/nmea_parser.h"]
+    node [fillcolor="#ff9999", style=filled] "networking/connectivity/modem/modem.c"                                      [label = "networking/connectivity/modem/modem.c"]
+    node [fillcolor="#ccccff", style=filled] "networking/connectivity/modem/modem.h"                                      [label = "networking/connectivity/modem/modem.h"]
+    node [fillcolor="#ff9999", style=filled] "networking/connectivity/network_ping/ping.c"                                [label = "networking/connectivity/network_ping/ping.c"]
+    node [fillcolor="#ccccff", style=filled] "networking/connectivity/network_ping/ping.h"                                [label = "networking/connectivity/network_ping/ping.h"]
+    node [fillcolor="#ff9999", style=filled] "networking/connectivity/wifi/wifi_manager.c"                                [label = "networking/connectivity/wifi/wifi_manager.c"]
+    node [fillcolor="#ccccff", style=filled] "networking/connectivity/wifi/wifi_manager.h"                                [label = "networking/connectivity/wifi/wifi_manager.h"]
+    node [fillcolor="#ccccff", style=filled] "networking/connectivity/wifi/wifi_manager_provisioning_api.h"               [label = "networking/connectivity/wifi/wifi_manager_provisioning_api.h"]
+    node [fillcolor="#ff9999", style=filled] "networking/connectivity/wifi/wifi_utils.c"                                  [label = "networking/connectivity/wifi/wifi_utils.c"]
+    node [fillcolor="#ccccff", style=filled] "networking/connectivity/wifi/wifi_utils.h"                                  [label = "networking/connectivity/wifi/wifi_utils.h"]
+    node [fillcolor="#ccccff", style=filled] "networking/protocols/REST_API_CLIENT/include/http_event_handler.h"          [label = "networking/protocols/REST_API_CLIENT/include/http_event_handler.h"]
+    node [fillcolor="#ccccff", style=filled] "networking/protocols/REST_API_CLIENT/include/http_rest_client.h"            [label = "networking/protocols/REST_API_CLIENT/include/http_rest_client.h"]
+    node [fillcolor="#ccccff", style=filled] "networking/protocols/REST_API_CLIENT/include/http_rest_json_client.h"       [label = "networking/protocols/REST_API_CLIENT/include/http_rest_json_client.h"]
+    node [fillcolor="#ccccff", style=filled] "networking/protocols/REST_API_CLIENT/include/http_rest_types.h"             [label = "networking/protocols/REST_API_CLIENT/include/http_rest_types.h"]
+    node [fillcolor="#ff9999", style=filled] "networking/protocols/REST_API_CLIENT/src/http_event_handler.c"              [label = "networking/protocols/REST_API_CLIENT/src/http_event_handler.c"]
+    node [fillcolor="#ff9999", style=filled] "networking/protocols/REST_API_CLIENT/src/http_rest_client.c"                [label = "networking/protocols/REST_API_CLIENT/src/http_rest_client.c"]
+    node [fillcolor="#ff9999", style=filled] "networking/protocols/REST_API_CLIENT/src/http_rest_json_client.c"           [label = "networking/protocols/REST_API_CLIENT/src/http_rest_json_client.c"]
+    node [fillcolor="#ff9999", style=filled] "networking/protocols/http/http_server/http_server_local.c"                  [label = "networking/protocols/http/http_server/http_server_local.c"]
+    node [fillcolor="#ccccff", style=filled] "networking/protocols/http/http_server/http_server_local.h"                  [label = "networking/protocols/http/http_server/http_server_local.h"]
+    node [fillcolor="#ff9999", style=filled] "networking/protocols/mqtt/app_mqtt.c"                                       [label = "networking/protocols/mqtt/app_mqtt.c"]
+    node [fillcolor="#ccccff", style=filled] "networking/protocols/mqtt/app_mqtt.h"                                       [label = "networking/protocols/mqtt/app_mqtt.h"]
+    node [fillcolor="#ff9999", style=filled] "networking/protocols/sockets/tcp_server.c"                                  [label = "networking/protocols/sockets/tcp_server.c"]
+    node [fillcolor="#ccccff", style=filled] "networking/protocols/sockets/tcp_server.h"                                  [label = "networking/protocols/sockets/tcp_server.h"]
+    node [fillcolor="#ff9999", style=filled] "networking/vhmi/vhmi.c"                                                     [label = "networking/vhmi/vhmi.c"]
+    node [fillcolor="#ccccff", style=filled] "networking/vhmi/vhmi.h"                                                     [label = "networking/vhmi/vhmi.h"]
+    node [fillcolor="#ff9999", style=filled] "storage/non_vol_storage/nvs/nvs_read_write.c"                               [label = "storage/non_vol_storage/nvs/nvs_read_write.c"]
+    node [fillcolor="#ccccff", style=filled] "storage/non_vol_storage/nvs/nvs_read_write.h"                               [label = "storage/non_vol_storage/nvs/nvs_read_write.h"]
+    node [fillcolor="#ff9999", style=filled] "storage/non_vol_storage/spiffs/iot_core_spiffs.c"                           [label = "storage/non_vol_storage/spiffs/iot_core_spiffs.c"]
+    node [fillcolor="#ccccff", style=filled] "storage/non_vol_storage/spiffs/iot_core_spiffs.h"                           [label = "storage/non_vol_storage/spiffs/iot_core_spiffs.h"]
+    node [fillcolor="#ff9999", style=filled] "storage/sdcard/sd_card.c"                                                   [label = "storage/sdcard/sd_card.c"]
+    node [fillcolor="#ccccff", style=filled] "storage/sdcard/sd_card.h"                                                   [label = "storage/sdcard/sd_card.h"]
+    node [fillcolor="#ff9999", style=filled] "storage/volatile_storage/dictionary/dictionary.c"                           [label = "storage/volatile_storage/dictionary/dictionary.c"]
+    node [fillcolor="#ccccff", style=filled] "storage/volatile_storage/dictionary/dictionary.h"                           [label = "storage/volatile_storage/dictionary/dictionary.h"]
+    node [fillcolor="#ff9999", style=filled] "system/firmware_updates/firmware_check/firmware_check.c"                    [label = "system/firmware_updates/firmware_check/firmware_check.c"]
+    node [fillcolor="#ccccff", style=filled] "system/firmware_updates/firmware_check/firmware_check.h"                    [label = "system/firmware_updates/firmware_check/firmware_check.h"]
+    node [fillcolor="#ff9999", style=filled] "system/firmware_updates/http_ota_handler/base64_decoding/base64_decoding.c" [label = "system/firmware_updates/http_ota_handler/base64_decoding/base64_decoding.c"]
+    node [fillcolor="#ccccff", style=filled] "system/firmware_updates/http_ota_handler/base64_decoding/base64_decoding.h" [label = "system/firmware_updates/http_ota_handler/base64_decoding/base64_decoding.h"]
+    node [fillcolor="#ff9999", style=filled] "system/firmware_updates/http_ota_handler/http_ota_handler.c"                [label = "system/firmware_updates/http_ota_handler/http_ota_handler.c"]
+    node [fillcolor="#ccccff", style=filled] "system/firmware_updates/http_ota_handler/http_ota_handler.h"                [label = "system/firmware_updates/http_ota_handler/http_ota_handler.h"]
+    node [fillcolor="#ff9999", style=filled] "system/firmware_updates/native_ota/native_ota.c"                            [label = "system/firmware_updates/native_ota/native_ota.c"]
+    node [fillcolor="#ccccff", style=filled] "system/firmware_updates/native_ota/native_ota.h"                            [label = "system/firmware_updates/native_ota/native_ota.h"]
+    node [fillcolor="#ff9999", style=filled] "system/status_monitoring/system_monitoring.c"                               [label = "system/status_monitoring/system_monitoring.c"]
+    node [fillcolor="#ccccff", style=filled] "system/status_monitoring/system_monitoring.h"                               [label = "system/status_monitoring/system_monitoring.h"]
+    node [fillcolor="#ff9999", style=filled] "system/status_reporting/system_status_reporting.c"                          [label = "system/status_reporting/system_status_reporting.c"]
+    node [fillcolor="#ccccff", style=filled] "system/status_reporting/system_status_reporting.h"                          [label = "system/status_reporting/system_status_reporting.h"]
+    node [fillcolor="#ff9999", style=filled] "system/sysinfo/sysinfo.c"                                                   [label = "system/sysinfo/sysinfo.c"]
+    node [fillcolor="#ccccff", style=filled] "system/sysinfo/sysinfo.h"                                                   [label = "system/sysinfo/sysinfo.h"]
+    node [fillcolor="#ff9999", style=filled] "test/test_storage.c"                                                        [label = "test/test_storage.c"]
+    node [fillcolor="#ccccff", style=filled] "utils/dc_codes/DC-codes.h"                                                  [label = "utils/dc_codes/DC-codes.h"]
+    node [fillcolor="#ff9999", style=filled] "utils/error_handling/data_modals/iotcore_errors_data_model.c"               [label = "utils/error_handling/data_modals/iotcore_errors_data_model.c"]
+    node [fillcolor="#ccccff", style=filled] "utils/error_handling/data_modals/iotcore_errors_data_model.h"               [label = "utils/error_handling/data_modals/iotcore_errors_data_model.h"]
+    node [fillcolor="#ff9999", style=filled] "utils/error_handling/errorHandling.c"                                       [label = "utils/error_handling/errorHandling.c"]
+    node [fillcolor="#ccccff", style=filled] "utils/error_handling/errorHandling.h"                                       [label = "utils/error_handling/errorHandling.h"]
+    node [fillcolor="#ff9999", style=filled] "utils/json/myJSON.c"                                                        [label = "utils/json/myJSON.c"]
+    node [fillcolor="#ccccff", style=filled] "utils/json/myJSON.h"                                                        [label = "utils/json/myJSON.h"]
+    node [fillcolor="#ff9999", style=filled] "utils/url_encoding/url_encoding.c"                                          [label = "utils/url_encoding/url_encoding.c"]
+    node [fillcolor="#ccccff", style=filled] "utils/url_encoding/url_encoding.h"                                          [label = "utils/url_encoding/url_encoding.h"]
+    node [fillcolor="#ff9999", style=filled] "utils/utility/utility.c"                                                    [label = "utils/utility/utility.c"]
+    node [fillcolor="#ccccff", style=filled] "utils/utility/utility.h"                                                    [label = "utils/utility/utility.h"]
+
+    "app/app_iotcore.c"                                                          -> "app/includes/app_iotcore.h"
+    "app/app_iotcore.c"                                                          -> "core/events/iotcore_events.h"
+    "app/app_iotcore.c"                                                          -> "system/status_monitoring/system_monitoring.h"
+    "app/app_iotcore.c"                                                          -> "system/status_reporting/system_status_reporting.h"
+    "app/app_iotcore.c"                                                          -> "utils/error_handling/errorHandling.h"
+    "app/app_iotcore.c"                                                          -> "storage/non_vol_storage/nvs/nvs_read_write.h"
+    "app/app_iotcore.c"                                                          -> "networking/connectivity/connectivity.h"
+    "app/app_iotcore.c"                                                          -> "networking/connectivity/connectivity_overrides.h"
+    "app/app_iotcore.c"                                                          -> "networking/protocols/mqtt/app_mqtt.h"
+    "app/app_iotcore.c"                                                          -> "app/priv_includes/app_iotcore_mqtt_pub_sub_events.h"
+    "app/app_iotcore.c"                                                          -> "core/iotcore_server_apis/iotcore_server_apis.h"
+    "app/app_iotcore.c"                                                          -> "app/priv_includes/app_iotcore_mqtt_cbs.h"
+    "app/app_iotcore.c"                                                          -> "app/priv_includes/app_iotcore_network_event_handler.h"
+    "app/app_iotcore.c"                                                          -> "networking/protocols/http/http_server/http_server_local.h"
+    "app/app_iotcore.c"                                                          -> "networking/connectivity/wifi/wifi_manager.h"
+    "app/app_iotcore_mqtt_cbs.c"                                                 -> "app/priv_includes/app_iotcore_mqtt_cbs.h"
+    "app/app_iotcore_mqtt_cbs.c"                                                 -> "system/sysinfo/sysinfo.h"
+    "app/app_iotcore_mqtt_cbs.c"                                                 -> "core/events/iotcore_events.h"
+    "app/app_iotcore_mqtt_cbs.c"                                                 -> "system/firmware_updates/firmware_check/firmware_check.h"
+    "app/app_iotcore_mqtt_cbs.c"                                                 -> "system/firmware_updates/http_ota_handler/http_ota_handler.h"
+    "app/app_iotcore_mqtt_cbs.c"                                                 -> "app/priv_includes/app_iotcore_ota_event_handler.h"
+    "app/app_iotcore_mqtt_cbs.c"                                                 -> "networking/connectivity/wifi/wifi_manager.h"
+    "app/app_iotcore_mqtt_cbs.c"                                                 -> "networking/connectivity/wifi/wifi_manager_provisioning_api.h"
+    "app/app_iotcore_mqtt_pub_sub_events.c"                                      -> "app/priv_includes/app_iotcore_mqtt_pub_sub_events.h"
+    "app/app_iotcore_mqtt_pub_sub_events.c"                                      -> "networking/protocols/mqtt/app_mqtt.h"
+    "app/app_iotcore_mqtt_pub_sub_events.c"                                      -> "core/events/iotcore_events.h"
+    "app/app_iotcore_network_event_handler.c"                                    -> "app/priv_includes/app_iotcore_network_event_handler.h"
+    "app/app_iotcore_network_event_handler.c"                                    -> "core/events/iotcore_events.h"
+    "app/app_iotcore_ota_event_handler.c"                                        -> "app/priv_includes/app_iotcore_ota_event_handler.h"
+    "app/app_iotcore_ota_event_handler.c"                                        -> "core/events/iotcore_events.h"
+    "app/app_iotcore_ota_event_handler.c"                                        -> "system/sysinfo/sysinfo.h"
+    "app/app_iotcore_ota_event_handler.c"                                        -> "system/firmware_updates/native_ota/native_ota.h"
+    "core/battery_charging/battery_charging.c"                                   -> "core/battery_charging/battery_charging.h"
+    "core/battery_charging/battery_charging.h"                                   -> "core/events/iotcore_events.h"
+    "core/billing/billing.c"                                                     -> "core/billing/billing.h"
+    "core/billing/billing.c"                                                     -> "storage/non_vol_storage/nvs/nvs_read_write.h"
+    "core/events/data_events/data_modals/mqtt_data_model.c"                      -> "core/events/data_events/data_modals/mqtt_data_model.h"
+    "core/events/data_events/data_modals/mqtt_data_model.c"                      -> "core/events/data_events/iotcore_data_events.h"
+    "core/events/data_events/iotcore_data_events.c"                              -> "core/events/data_events/iotcore_data_events.h"
+    "core/events/data_events/iotcore_data_events.h"                              -> "core/events/data_events/data_modals/mqtt_data_model.h"
+    "core/events/error_events/iotcore_error_events.c"                            -> "core/events/error_events/iotcore_error_events.h"
+    "core/events/error_events/iotcore_error_events.h"                            -> "utils/error_handling/data_modals/iotcore_errors_data_model.h"
+    "core/events/info_events/iotcore_info_events.c"                              -> "core/events/info_events/iotcore_info_events.h"
+    "core/events/info_events/iotcore_info_events.h"                              -> "core/events/info_events/data_modals/system_info_data_model.h"
+    "core/events/iotcore_events.c"                                               -> "core/events/iotcore_events.h"
+    "core/events/iotcore_events.h"                                               -> "core/events/info_events/iotcore_info_events.h"
+    "core/events/iotcore_events.h"                                               -> "core/events/error_events/iotcore_error_events.h"
+    "core/events/iotcore_events.h"                                               -> "core/events/data_events/iotcore_data_events.h"
+    "core/iotcore_server_apis/iotcore_server_apis.c"                             -> "core/iotcore_server_apis/iotcore_server_apis.h"
+    "core/iotcore_server_apis/iotcore_server_apis.c"                             -> "utils/json/myJSON.h"
+    "core/iotcore_server_apis/iotcore_server_apis.c"                             -> "core/events/iotcore_events.h"
+    "core/iotcore_server_apis/iotcore_server_apis.c"                             -> "networking/connectivity/connectivity.h"
+    "core/iotcore_server_apis/iotcore_server_apis.h"                             -> "networking/protocols/REST_API_CLIENT/include/http_rest_client.h"
+    "core/iotcore_server_apis/iotcore_server_apis.h"                             -> "system/sysinfo/sysinfo.h"
+    "networking/connectivity/ble/app_ble.c"                                      -> "networking/connectivity/ble/app_ble.h"
+    "networking/connectivity/ble/app_ble.c"                                      -> "networking/vhmi/vhmi.h"
+    "networking/connectivity/ble/scli.c"                                         -> "networking/connectivity/ble/app_ble.h"
+    "networking/connectivity/connectivity.c"                                     -> "networking/connectivity/connectivity.h"
+    "networking/connectivity/connectivity.c"                                     -> "networking/connectivity/connectivity_overrides.h"
+    "networking/connectivity/connectivity.c"                                     -> "networking/connectivity/network_ping/ping.h"
+    "networking/connectivity/connectivity.h"                                     -> "networking/connectivity/wifi/wifi_manager.h"
+    "networking/connectivity/connectivity.h"                                     -> "networking/connectivity/ethernet/ethernet.h"
+    "networking/connectivity/connectivity.h"                                     -> "networking/connectivity/modem/modem.h"
+    "networking/connectivity/ethernet/ethernet.c"                                -> "networking/connectivity/ethernet/ethernet.h"
+    "networking/connectivity/modem/gnss_provider/dce_gnss_wrapper.c"             -> "networking/connectivity/modem/gnss_provider/nmea_parser.h"
+    "networking/connectivity/modem/modem.c"                                      -> "networking/connectivity/modem/modem.h"
+    "networking/connectivity/network_ping/ping.c"                                -> "networking/connectivity/network_ping/ping.h"
+    "networking/connectivity/wifi/wifi_manager.c"                                -> "networking/connectivity/wifi/wifi_manager.h"
+    "networking/connectivity/wifi/wifi_manager.c"                                -> "networking/connectivity/wifi/wifi_manager_provisioning_api.h"
+    "networking/connectivity/wifi/wifi_manager.h"                                -> "system/sysinfo/sysinfo.h"
+    "networking/connectivity/wifi/wifi_manager.h"                                -> "storage/non_vol_storage/nvs/nvs_read_write.h"
+    "networking/connectivity/wifi/wifi_manager.h"                                -> "networking/connectivity/wifi/wifi_utils.h"
+    "networking/connectivity/wifi/wifi_manager_provisioning_api.h"               -> "networking/connectivity/wifi/wifi_manager.h"
+    "networking/connectivity/wifi/wifi_utils.c"                                  -> "networking/connectivity/wifi/wifi_utils.h"
+    "networking/protocols/REST_API_CLIENT/include/http_event_handler.h"          -> "networking/protocols/REST_API_CLIENT/include/http_rest_types.h"
+    "networking/protocols/REST_API_CLIENT/include/http_rest_client.h"            -> "networking/protocols/REST_API_CLIENT/include/http_rest_types.h"
+    "networking/protocols/REST_API_CLIENT/include/http_rest_client.h"            -> "networking/protocols/REST_API_CLIENT/include/http_event_handler.h"
+    "networking/protocols/REST_API_CLIENT/include/http_rest_json_client.h"       -> "networking/protocols/REST_API_CLIENT/include/http_rest_client.h"
+    "networking/protocols/REST_API_CLIENT/src/http_event_handler.c"              -> "networking/protocols/REST_API_CLIENT/include/http_event_handler.h"
+    "networking/protocols/REST_API_CLIENT/src/http_rest_client.c"                -> "networking/protocols/REST_API_CLIENT/include/http_rest_client.h"
+    "networking/protocols/REST_API_CLIENT/src/http_rest_json_client.c"           -> "networking/protocols/REST_API_CLIENT/include/http_rest_json_client.h"
+    "networking/protocols/http/http_server/http_server_local.c"                  -> "networking/protocols/http/http_server/http_server_local.h"
+    "networking/protocols/http/http_server/http_server_local.c"                  -> "networking/connectivity/connectivity.h"
+    "networking/protocols/http/http_server/http_server_local.c"                  -> "core/events/iotcore_events.h"
+    "networking/protocols/http/http_server/http_server_local.c"                  -> "core/events/iotcore_events.h"
+    "networking/protocols/http/http_server/http_server_local.c"                  -> "utils/url_encoding/url_encoding.h"
+    "networking/protocols/http/http_server/http_server_local.c"                  -> "utils/dc_codes/DC-codes.h"
+    "networking/protocols/http/http_server/http_server_local.c"                  -> "networking/connectivity/wifi/wifi_manager_provisioning_api.h"
+    "networking/protocols/http/http_server/http_server_local.c"                  -> "system/sysinfo/sysinfo.h"
+    "networking/protocols/mqtt/app_mqtt.c"                                       -> "networking/protocols/mqtt/app_mqtt.h"
+    "networking/protocols/mqtt/app_mqtt.c"                                       -> "system/sysinfo/sysinfo.h"
+    "networking/protocols/mqtt/app_mqtt.c"                                       -> "core/events/iotcore_events.h"
+    "networking/protocols/mqtt/app_mqtt.c"                                       -> "system/sysinfo/sysinfo.h"
+    "networking/protocols/sockets/tcp_server.c"                                  -> "networking/protocols/sockets/tcp_server.h"
+    "networking/protocols/sockets/tcp_server.c"                                  -> "networking/connectivity/connectivity.h"
+    "networking/protocols/sockets/tcp_server.c"                                  -> "networking/vhmi/vhmi.h"
+    "networking/vhmi/vhmi.c"                                                     -> "networking/vhmi/vhmi.h"
+    "storage/non_vol_storage/nvs/nvs_read_write.c"                               -> "storage/non_vol_storage/nvs/nvs_read_write.h"
+    "storage/non_vol_storage/spiffs/iot_core_spiffs.c"                           -> "storage/non_vol_storage/spiffs/iot_core_spiffs.h"
+    "storage/volatile_storage/dictionary/dictionary.c"                           -> "storage/volatile_storage/dictionary/dictionary.h"
+    "system/firmware_updates/firmware_check/firmware_check.c"                    -> "system/firmware_updates/firmware_check/firmware_check.h"
+    "system/firmware_updates/http_ota_handler/base64_decoding/base64_decoding.c" -> "system/firmware_updates/http_ota_handler/base64_decoding/base64_decoding.h"
+    "system/firmware_updates/http_ota_handler/http_ota_handler.c"                -> "system/firmware_updates/http_ota_handler/http_ota_handler.h"
+    "system/firmware_updates/http_ota_handler/http_ota_handler.c"                -> "system/firmware_updates/native_ota/native_ota.h"
+    "system/firmware_updates/http_ota_handler/http_ota_handler.c"                -> "networking/protocols/REST_API_CLIENT/include/http_rest_client.h"
+    "system/firmware_updates/http_ota_handler/http_ota_handler.c"                -> "system/firmware_updates/http_ota_handler/base64_decoding/base64_decoding.h"
+    "system/firmware_updates/http_ota_handler/http_ota_handler.c"                -> "core/events/iotcore_events.h"
+    "system/firmware_updates/native_ota/native_ota.c"                            -> "system/firmware_updates/native_ota/native_ota.h"
+    "system/firmware_updates/native_ota/native_ota.c"                            -> "core/events/iotcore_events.h"
+    "system/status_monitoring/system_monitoring.c"                               -> "system/status_monitoring/system_monitoring.h"
+    "system/status_monitoring/system_monitoring.c"                               -> "core/events/iotcore_events.h"
+    "system/status_monitoring/system_monitoring.c"                               -> "storage/non_vol_storage/nvs/nvs_read_write.h"
+    "system/status_monitoring/system_monitoring.c"                               -> "utils/json/myJSON.h"
+    "system/status_reporting/system_status_reporting.c"                          -> "system/status_reporting/system_status_reporting.h"
+    "system/status_reporting/system_status_reporting.c"                          -> "core/events/iotcore_events.h"
+    "system/sysinfo/sysinfo.c"                                                   -> "system/sysinfo/sysinfo.h"
+    "test/test_storage.c"                                                        -> "storage/non_vol_storage/nvs/nvs_read_write.h"
+    "utils/error_handling/data_modals/iotcore_errors_data_model.c"               -> "utils/error_handling/data_modals/iotcore_errors_data_model.h"
+    "utils/error_handling/data_modals/iotcore_errors_data_model.c"               -> "core/events/iotcore_events.h"
+    "utils/error_handling/errorHandling.c"                                       -> "utils/error_handling/errorHandling.h"
+    "utils/error_handling/errorHandling.c"                                       -> "networking/connectivity/connectivity.h"
+    "utils/error_handling/errorHandling.c"                                       -> "core/events/iotcore_events.h"
+    "utils/error_handling/errorHandling.c"                                       -> "utils/json/myJSON.h"
+    "utils/error_handling/errorHandling.c"                                       -> "system/firmware_updates/native_ota/native_ota.h"
+    "utils/error_handling/errorHandling.c"                                       -> "utils/url_encoding/url_encoding.h"
+    "utils/error_handling/errorHandling.c"                                       -> "utils/dc_codes/DC-codes.h"
+    "utils/error_handling/errorHandling.h"                                       -> "utils/dc_codes/DC-codes.h"
+    "utils/error_handling/errorHandling.h"                                       -> "core/events/iotcore_events.h"
+    "utils/json/myJSON.c"                                                        -> "utils/json/myJSON.h"
+    "utils/url_encoding/url_encoding.c"                                          -> "utils/url_encoding/url_encoding.h"
+}

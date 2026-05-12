@@ -1,0 +1,16 @@
+menu "Output Devices"
+    menu "LED"
+        config ENABLE_LED
+            bool "Enable LED"
+            default y
+    endmenu
+    menu "WS2812b"
+        config ENABLE_WS2812B
+            bool "Enable WS2812B LED Strip"
+            default n
+        if ENABLE_WS2812B
+            rsource "displays/ws2812b/Kconfig"
+        endif
+    endmenu
+            
+endmenu

@@ -1,0 +1,12 @@
+# App iotcore flow diagram
+digraph codeviz {
+    splines=true
+    overlap=scalexy
+    init_event_loops -> init_nvs -> init_connectivity -> init_event_network_handler -> init_mqtt_client -> init_server_apis_task -> init_rtc_task
+    device_connected_to_ap_cb -> start_webserver -> register_custom_callbacks
+    device_disconnected_from_ap_cb -> stop_webserver
+    mqtt_connected_cb -> update_connectivity_internet_check
+    mqtt_disconnected_cb -> update_connectivity_internet_check
+    onboarding_Complete_cb -> save_deviceID_in_flash
+    
+}

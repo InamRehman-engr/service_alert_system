@@ -1,0 +1,7 @@
+list(APPEND srcs "${CMAKE_CURRENT_LIST_DIR}/app_iotcore.c")
+list(APPEND srcs "${CMAKE_CURRENT_LIST_DIR}/app_iotcore_mqtt_cbs.c")
+list(APPEND srcs "${CMAKE_CURRENT_LIST_DIR}/app_iotcore_mqtt_pub_sub_events.c")
+list(APPEND srcs "${CMAKE_CURRENT_LIST_DIR}/app_iotcore_ota_event_handler.c")
+list(APPEND srcs "${CMAKE_CURRENT_LIST_DIR}/app_iotcore_network_event_handler.c")
+list(APPEND includes "${CMAKE_CURRENT_LIST_DIR}/includes/")
+list(APPEND priv_includes "${CMAKE_CURRENT_LIST_DIR}/priv_includes/")

@@ -1,0 +1,23 @@
+menu "Event Loop config"
+    config IOTCORE_EVENT_LOOP_TASK_PRIORITY
+        int "Task priority of event loop. Will be shared with all 3 events"
+        default 5
+    
+    config IOTCORE_DATA_EVENT_HEAP_SIZE
+        int "Heap size for comms event. This loop will be used for data so give it more than the rest"
+        default 4096
+
+    config IOTCORE_APP_EVENT_HEAP_SIZE
+        int "Heap size for app event"
+        default 2048
+    
+    config IOTCORE_ERROR_EVENT_HEAP_SIZE
+        int "Heap size for error event"
+        default 2048
+        
+                
+    config IOTCORE_EVENT_QUEUE_SIZE
+        int "queue size for tha number of max events"
+        default 20
+
+endmenu

@@ -1,0 +1,60 @@
+CONFIG_ENABLE_NVS=y
+CONFIG_REST_API_CLIENT=y
+CONFIG_ENABLE_IOTCORE_SERVER_API=y
+CONFIG_ENABLE_IOTCORE_EVENTS=y
+
+CONFIG_IOTCORE_DATA_EVENT_HEAP_SIZE=4096
+CONFIG_IOTCORE_APP_EVENT_HEAP_SIZE=4096
+CONFIG_IOTCORE_ERROR_EVENT_HEAP_SIZE=4096
+
+CONFIG_ENABLE_OTA=y
+CONFIG_HEAP_POISONING_COMPREHENSIVE=y
+CONFIG_STACK_CHECK_STRONG=y
+
+###size of app will increase so partition table will be needed
+
+CONFIG_ESPTOOLPY_FLASHSIZE_4MB=y
+CONFIG_ESPTOOLPY_FLASHSIZE="4MB"
+#
+# Partition Table
+#
+# CONFIG_PARTITION_TABLE_SINGLE_APP is not set
+# CONFIG_PARTITION_TABLE_SINGLE_APP_LARGE is not set
+# CONFIG_PARTITION_TABLE_TWO_OTA is not set
+CONFIG_PARTITION_TABLE_CUSTOM=y
+CONFIG_PARTITION_TABLE_CUSTOM_FILENAME="partitions.csv"
+CONFIG_PARTITION_TABLE_FILENAME="partitions.csv"
+CONFIG_PARTITION_TABLE_OFFSET=0x8000
+CONFIG_PARTITION_TABLE_MD5=y
+# end of Partition Table
+
+
+#contents of partitions.csv
+
+#####    # Name,   Type, SubType, Offset,  Size, Flags
+#####    # Note: if you have increased the bootloader size, make sure to update the offsets to avoid overlap
+#####    nvs,        data,    nvs,      0x9000,  0x4000,
+#####    otadata,    data,    ota,      0xd000,  0x2000,
+#####    phy_init,   data,    phy,      0xf000,  0x1000,
+#####    ota_0,       app,  ota_0,     0x10000,   1536K,
+#####    ota_1,       app,  ota_1,            ,   1536K,
+
+
+
+
+
+#if need app_iotcore to handle onboarding add this part
+
+CONFIG_IOTCORE_SERVER_API_DEFAULT_CONFIG=y
+CONFIG_IOTCORE_SERVER_API_DEFAULT_CONFIG_URL="https://api.iotcore.cowlar.com"
+CONFIG_IOTCORE_SERVER_API_DEFAULT_CONFIG_USERNAME="device.sim-dispenser@cowlar.com"
+CONFIG_IOTCORE_SERVER_API_DEFAULT_CONFIG_PASSWORD="123456"
+
+#if need default mqtt client and post message with events use this
+
+CONFIG_IOTCORE_MQTT_DEFAULT_CLIENT_TRANSPORT="mqtt"
+CONFIG_IOTCORE_MQTT_DEFAULT_USERNAME="dockersim-dispenser"
+CONFIG_IOTCORE_MQTT_DEFAULT_PASSWORD="CowlarGeyser7890"
+CONFIG_IOTCORE_MQTT_DEFAULT_HOST="iotcore.cowlar.com"
+CONFIG_IOTCORE_MQTT_DEFAULT_PORT="1883"
+

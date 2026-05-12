@@ -1,0 +1,6 @@
+include(${CMAKE_CURRENT_LIST_DIR}/adc/CMakeLists.txt)
+include(${CMAKE_CURRENT_LIST_DIR}/button/CMakeLists.txt)
+include(${CMAKE_CURRENT_LIST_DIR}/i2c/CMakeLists.txt)
+include(${CMAKE_CURRENT_LIST_DIR}/rtc/CMakeLists.txt)
+include(${CMAKE_CURRENT_LIST_DIR}/spi_master/CMakeLists.txt)
+include(${CMAKE_CURRENT_LIST_DIR}/uart/CMakeLists.txt)

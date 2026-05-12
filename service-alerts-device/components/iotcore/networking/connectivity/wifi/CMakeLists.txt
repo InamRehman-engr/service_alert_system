@@ -1,0 +1,5 @@
+if(CONFIG_ENABLE_WIFI)
+list(APPEND srcs "${CMAKE_CURRENT_LIST_DIR}/wifi_manager.c")
+list(APPEND srcs "${CMAKE_CURRENT_LIST_DIR}/wifi_utils.c")
+list(APPEND includes "${CMAKE_CURRENT_LIST_DIR}/")
+endif()

@@ -1,0 +1,3 @@
+config ENABLE_BMP280
+    bool "Enable BMP280 Sensor"
+    default n

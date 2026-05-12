@@ -1,0 +1,136 @@
+# parent_config
+menu "IoT Core"
+
+    menu "Configs"
+
+        # Application level configs for IoT core project. Like device type, etc.
+        rsource "utils/Kconfig"
+        rsource "core/Kconfig"
+        rsource "storage/Kconfig"
+        rsource "system/Kconfig"
+    endmenu
+
+    menu "Drivers & Hardware config"
+
+        rsource "networking/Kconfig"  # Networking related Kconfig
+        rsource "output_devices/Kconfig"
+        rsource "hardware/Kconfig"
+
+    endmenu
+    
+
+    menu "Iotcore Default app"
+        config IOTCORE_MQTT_DEFAULT_CLIENT
+            bool "Enable iotcore's default mqtt client. Will come with event listener. Otherwise user will need to implement himself"
+            depends on ENABLE_MQTT #Make dependency on actual app_mqtt
+            default y
+        if IOTCORE_MQTT_DEFAULT_CLIENT
+            # This will be implemented in app_iotcore.c
+            menu "Iotcore Default MQTT Configuration"
+            config IOTCORE_MQTT_DEFAULT_CLIENT_TRANSPORT
+                string "Default MQTT Client Transport"
+                depends on IOTCORE_MQTT_DEFAULT_CLIENT
+                default "mqtt"
+                help
+                    Select the default transport protocol for the MQTT client.
+                    Options:
+                    - mqtt: Standard MQTT over TCP.
+                    - ws: MQTT over WebSocket.
+                    - wss: MQTT over WebSocket Secure
+            config IOTCORE_MQTT_DEFAULT_USERNAME
+                string "MQTT Username"
+                depends on IOTCORE_MQTT_DEFAULT_CLIENT
+                default ""
+                help
+                    Enter the username for MQTT authentication.
+    
+            config IOTCORE_MQTT_DEFAULT_PASSWORD
+                string "MQTT Password"
+                depends on IOTCORE_MQTT_DEFAULT_CLIENT
+                default ""
+                help
+                    Enter the password for MQTT authentication.
+    
+            config IOTCORE_MQTT_DEFAULT_HOST
+                string "MQTT Broker Host"
+                depends on IOTCORE_MQTT_DEFAULT_CLIENT
+                default "localhost"
+                help
+                    Enter the hostname or IP address of the MQTT broker. 
+                    For example, 'broker.example.com' or '192.168.1.100'.
+    
+            #Keeping this string here helps a lot with string formatting down the line
+            config IOTCORE_MQTT_DEFAULT_PORT
+                string "Specify port for mqtt"
+                depends on IOTCORE_MQTT_DEFAULT_CLIENT
+                default "1883"
+
+            endmenu
+        endif
+        config IOTCORE_SERVER_API_DEFAULT_CONFIG
+            bool "Enable the iotcore app to perform default onboarding"
+            depends on ENABLE_IOTCORE_SERVER_API
+            default y
+
+        if IOTCORE_SERVER_API_DEFAULT_CONFIG
+            config IOTCORE_SERVER_API_DEFAULT_CONFIG_URL
+                string "URL String for api. example is https://localhost:8080/v1 . This will be default after which route can be called"
+                default ""
+            config IOTCORE_SERVER_API_DEFAULT_CONFIG_USERNAME
+                string "/auth api email/username field"
+                default ""
+            config IOTCORE_SERVER_API_DEFAULT_CONFIG_PASSWORD
+                string "/auth api password field"
+        endif
+    endmenu
+    menu "Project settings"
+        config CURRENT_FIRMWARE_SUB_VERSION
+                int "firmware version sub"
+                default 1
+                range 0 200
+                help
+                    firmware version sub.   
+
+        config CURRENT_FIRMWARE_MINOR_VERSION
+                int "firmware version minor"
+                default 0
+                range 0 200
+                help
+                    firmware version minor.       
+
+        config CURRENT_FIRMWARE_MAJOR_VERSION
+                int "firmware version MAJOR"
+                default 0
+                range 0 200
+                help
+                    firmware version MAJOR.  
+        config FW_IS_RC
+                bool "Release Candidate"
+                default n
+        config FW_RC_NUM
+                int "Release Candidate Version"
+                default 0 
+        config  DEVICE_HARDWARE_PREFIX #Ifdef checks should be comparing strings
+                string "Hardware prefix. will be set as IAW_1.x where IAW is prefix"
+                default "HW"
+
+        config  HARDWARE_VERSION
+                string "hardware version"
+                default "1.x"
+                help
+                    hardware verison for which this c.
+
+        config  DEVICE_TYPE_ID
+                int "Device type ID"
+                default 1
+    endmenu 
+    menu "Testing"
+        config ENABLE_UNIT_TESTS
+            bool "Enable Unit Tests"
+            default n
+
+        config ENABLE_INTEGRATION_TESTS
+            bool "Enable Integration Tests"
+            default n
+    endmenu
+endmenu

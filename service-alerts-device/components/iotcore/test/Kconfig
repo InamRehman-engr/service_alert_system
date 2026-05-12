@@ -1,0 +1,10 @@
+menu "IoT Core - Unit Tests"
+    menu "Hardware Unit Tests"
+        menu "Peripheral Unit Tests"
+            config UNIT_TEST_I2c
+            bool "Enable I2C unit Testing"
+            default n
+        endmenu
+    endmenu
+
+endmenu

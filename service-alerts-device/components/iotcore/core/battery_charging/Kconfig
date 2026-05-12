@@ -1,0 +1,53 @@
+menu "BATTERY_CHARGING"
+    config BATTERY_VOLTAGE_ADC
+        bool "Battery voltage messurement adc available"
+        default n
+        help
+            Battery voltage messurement adc available
+    config BATTERY_VOLTAGE_ADC_UNIT
+        depends on BATTERY_VOLTAGE_ADC
+        default 1
+        int "Battery voltage messurement adc unit"
+        range 0 1
+        help
+            Battery voltage messurement adc unit
+    config BATTERY_VOLTAGE_ADC_CHANNEL
+        depends on BATTERY_VOLTAGE_ADC
+        int "Battery voltage messurement adc CHANNEL"
+        range 0 9
+        help
+            Battery voltage messurement adc CHANNEL
+    config BATTERY_VOLTAGE_ADC_R1
+        depends on BATTERY_VOLTAGE_ADC
+        int "Battery voltage messurement voltage divider R1in Kohm"
+        default 8200
+        help
+            Battery voltage messurement voltage divider R1 in Kohm
+    config BATTERY_VOLTAGE_ADC_R2
+        depends on BATTERY_VOLTAGE_ADC
+        int "Battery voltage messurement voltage divider R2 in Kohm"
+        default 910
+        help
+            Battery voltage messurement voltage divider R2 in Kohm
+                                                                       
+    config BATTERY_CHARGE_STATUS
+        bool "Battery charging PINS available"
+        default n
+        help
+            Battery charging PINS available
+    config BATTERY_CHARGE_STATUS_PIN
+        depends on BATTERY_CHARGE_STATUS
+        int "charging status Pin Number"
+        default -1
+        range -1 39
+        help
+            Pin number of charging status.
+    config BATTERY_CHARGE_STDBY_PIN
+        depends on BATTERY_CHARGE_STATUS
+        int "chraging standby Pin Number"
+        default -1
+        range -1 39
+        help
+            Pin number ofchraging standby.
+                       
+endmenu

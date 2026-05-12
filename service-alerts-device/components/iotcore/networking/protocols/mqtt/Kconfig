@@ -1,0 +1,27 @@
+menu "MQTT_APPLICATION_CONFIGURATION"
+    config MQTT_RECONNECT_TIMEOUT
+        int "Time in ms (Reconnect to the broker after this value in miliseconds if auto reconnect is not disabled)"
+        default 10000
+    config MQTT_REFRESH_CONNECTION_MS
+        int "Refresh connection after this value (in milliseconds), default 30 mins"
+        default 1800000
+    config MQTT_KEEPALIVE_INTERVAL
+        int "Keepalive interval of the client. keeping this too low might cause frequent disconnections and keeing it too high will result in delayed disconnections"
+        default 10
+    config MQTT_RETRANSMIT_TIMEOUT
+        int "timeout for retransmitting of failed packet"
+        default 1000
+    config MQTT_TASK_PRIORITY
+        int "Task priority for MQTT internal task"
+        default 5
+    config MQTT_TASK_STACK_SIZE
+        int "Task stack size internal for mqtt"
+        default 6144
+    config MQTT_BUFFER_SIZE
+        int "MQTT buffer size for incoming and outgoing messages"
+        default 1024
+
+    config MQTT_USE_MAC_ADDRESS_AS_DEVICE_ID
+        bool "Either mqtt uses mac address in place of device id or user provides one"
+        default false
+endmenu

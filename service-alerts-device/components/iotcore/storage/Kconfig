@@ -1,0 +1,34 @@
+menu "Storage"
+
+    menu "Non-Volatile Storage"
+        menu "NVS"
+            config ENABLE_NVS
+                bool "Enable NVS"
+                default n
+        endmenu
+        menu "SD CARD"
+            config ENABLE_SDCARD
+                bool "Enable SD Card"
+                default n
+            if ENABLE_SDCARD
+                rsource "sdcard/Kconfig"
+            endif
+        endmenu
+    
+    endmenu
+
+    menu "Volatile Storage"
+
+        config ENABLE_IN_MEMORY_DICTIONARY
+            bool "Enable in-memory dictionary"
+            default n
+    
+    endmenu
+
+    config ENABLE_LITTLEFS
+        bool "Enable LittleFS"
+        default n
+    if ENABLE_LITTLEFS
+        rsource "file_management/littlefs/Kconfig"
+    endif
+endmenu

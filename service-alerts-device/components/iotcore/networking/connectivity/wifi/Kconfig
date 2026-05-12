@@ -1,0 +1,43 @@
+menu "WiFi Configuration"
+
+    choice WIFI_POWER_SAVE_MODE
+        prompt "Power Saving Mode"
+        default WIFI_POWER_SAVE_MIN_MODEM
+        help
+            Power save mode for the esp32 to use. Modem sleep mode includes minimum and maximum power save modes.
+            In minimum power save mode, station wakes up every DTIM to receive beacon. Broadcast data will not be
+            lost because it is transmitted after DTIM. However, it can not save much more power if DTIM is short
+            for DTIM is determined by AP.
+            In maximum power save mode, station wakes up every listen interval to receive beacon. Broadcast data
+            may be lost because station may be in sleep state at DTIM time. If listen interval is longer, more power
+            is saved but broadcast data is more easy to lose.
+
+        config WIFI_POWER_SAVE_NONE
+            bool "None"
+        config WIFI_POWER_SAVE_MIN_MODEM
+            bool "Minimum Power Saving"
+        config WIFI_POWER_SAVE_MAX_MODEM
+            bool "Maximum Power Saving"
+    endchoice
+
+    config IOTCORE_DEFAULT_WIFI
+        bool "Enable default wifi"
+        default false
+        help
+            use this to enable default configurable wifi besides the "Cowlar Test".
+
+    config IOTCORE_WIFI_DEFAULT_SSID
+        string "Default ssid"
+        default "IOTCORE Test"
+        depends on IOTCORE_DEFAULT_WIFI
+        help
+            Default wifi ssid which can be used to conect device to the internet if no wifis are on it.
+
+    config IOTCORE_WIFI_DEFAULT_PASS
+        string "Default Pass"
+        default "12345677"
+        depends on IOTCORE_DEFAULT_WIFI
+        help
+            Password for the default ssid.
+
+endmenu

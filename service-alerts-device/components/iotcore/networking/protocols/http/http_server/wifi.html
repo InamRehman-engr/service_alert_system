@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WiFi Credentials</title>
+    <style>
+        body {
+            font-family: Verdana, sans-serif;
+            background-color: #FBF9F1;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+            text-align: center;
+            color: #1B1C17;
+        }
+
+        h1 {
+            color: #4C6707;
+            margin-top: 20px;
+        }
+
+        form {
+            background-color: #EFEEE6;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 400px;
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 12px;
+            color: #1B1C17;
+            font-size: 1.1em;
+        }
+
+        select#ssid,
+        input#password,
+        input#pin {
+            width: 100%;
+            height: 35px;
+            padding: 0 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        input[type=submit] {
+            width: 100%;
+            height: 35px;
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            padding: 12px;
+            font-size: 1em;
+            width: calc(100% - 24px);
+            margin-bottom: 20px;
+            border-radius: 6px;
+            border: 1px solid #C9D996;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            padding: 12px 24px;
+            font-size: 1em;
+            background-color: #4C6707;
+            color: #FBF9F1;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #C9D996;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>IOT CORE</h1>
+    <form id="wifiForm" onsubmit="submitForm(event)">
+        <label for="ssid">WiFi SSID</label>
+        <select id="ssid" name="ssid" required>
+            <option value="">Select WiFi SSID</option>
+        </select>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter WiFi Password" required><br><br>
+
+        <div class="checkbox-container">
+            <input type="checkbox" id="showPassword">
+            <label for="showPassword">Show Password</label>
+        </div><br><br>
+
+        <label for="pin">Device PIN</label>
+        <input type="text" id="pin" name="pin" placeholder="Enter PIN" required><br><br>
+
+        <label for="user_id">User ID</label>
+        <input type="text" id="user_id" name="user_id" placeholder="Enter User ID" required><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        function getRSSIstr(rssi) {
+            if (rssi < 55) return '▂▄▆█';
+            else if (rssi < 66) return '▂▄▆';
+            else if (rssi < 77) return '▂▄';
+            else if (rssi < 88) return '▂';
+            return '';
+        }
+
+        function populateDropdown() {
+            const ssidDropdown = document.getElementById('ssid');
+            fetch('http://192.168.4.1/scan')
+                .then((response) => response.json())
+                .then((data) => {
+                    ssidDropdown.innerHTML = '<option value="">Select WiFi SSID</option>';
+                    data.SSIDS.forEach((item) => {
+                        const option = document.createElement('option');
+                        option.value = item.ssid;
+                        const rssi = Math.abs(item.rssi);
+                        const rssiBar = getRSSIstr(rssi);
+                        option.textContent = `${item.ssid}   ${rssiBar}`;
+                        ssidDropdown.appendChild(option);
+                    });
+                })
+                .catch((error) => {
+                    console.error('Error fetching data from API:', error);
+                });
+        }
+
+        window.addEventListener('load', populateDropdown);
+
+        document.getElementById('showPassword').addEventListener('change', function () {
+            const passwordField = document.getElementById('password');
+            passwordField.type = this.checked ? 'text' : 'password';
+        });
+
+        function submitForm(event) {
+            event.preventDefault();
+
+            const ssidValue = document.getElementById("ssid").value;
+            const passwordValue = document.getElementById("password").value;
+            const pinValue = document.getElementById("pin").value;
+            const userIdValue = document.getElementById("user_id").value;
+
+            const formData = new URLSearchParams();
+            formData.append('ssid', ssidValue);
+            formData.append('pass', passwordValue);
+            formData.append('pin', pinValue);
+            formData.append('user_id', userIdValue);
+
+            fetch('http://192.168.4.1/wifi', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: formData
+            })
+                .then(response => {
+                    if (response.ok) {
+                        console.log('WiFi credentials submitted successfully');
+                        document.getElementById("wifiForm").reset();
+                    } else {
+                        console.error('Failed to submit WiFi credentials');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+                const passwordField = document.getElementById('password');
+                passwordField.type =  'password';
+        }
+    </script>
+</body>
+
+</html>

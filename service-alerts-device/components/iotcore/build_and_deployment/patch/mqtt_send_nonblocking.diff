@@ -1,0 +1,93 @@
+From a079510466805de4085057734e45d9eadc7c1a02 Mon Sep 17 00:00:00 2001
+From: Umer Ilyas <umer.ilyas@cowlar.com>
+Date: Thu, 20 Feb 2020 11:54:55 +0500
+Subject: [PATCH] send mqtt message non blocking
+
+---
+ include/mqtt_client.h |  1 +
+ mqtt_client.c         | 49 +++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 50 insertions(+)
+
+diff --git a/include/mqtt_client.h b/include/mqtt_client.h
+index 796f431..9da11d9 100644
+--- a/include/mqtt_client.h
++++ b/include/mqtt_client.h
+@@ -295,6 +295,7 @@ int esp_mqtt_client_unsubscribe(esp_mqtt_client_handle_t client, const char *top
+  *         -1 on failure.
+  */
+ int esp_mqtt_client_publish(esp_mqtt_client_handle_t client, const char *topic, const char *data, int len, int qos, int retain);
++int esp_mqtt_client_publish_custom(esp_mqtt_client_handle_t client, const char *topic, const char *data, int len, int qos, int retain);
+ 
+ /**
+  * @brief Destroys the client handle
+diff --git a/mqtt_client.c b/mqtt_client.c
+index fba72e3..0963628 100644
+--- a/mqtt_client.c
++++ b/mqtt_client.c
+@@ -1272,7 +1272,13 @@ static void esp_mqtt_task(void *pv)
+             outbox_item_handle_t item = outbox_dequeue(client->outbox, QUEUED, NULL);
+             if (item) {
+                 if (mqtt_resend_queued(client, item) == ESP_OK) {
++                    ESP_LOGI(TAG, "[%10d]send mqtt message  qos=%d", client->mqtt_state.pending_msg_id, client->mqtt_state.pending_publish_qos);
++
+                     outbox_set_pending(client->outbox, client->mqtt_state.pending_msg_id, TRANSMITTED);
++                    if (client->mqtt_state.pending_publish_qos == 0)
++                    {
++                        outbox_set_pending(client->outbox, client->mqtt_state.pending_msg_id, CONFIRMED);
++                    }
+                 }
+                 // resend other "transmitted" messages after 1s
+             } else if (platform_tick_get_ms() - last_retransmit > 1000) {
+@@ -1620,6 +1626,49 @@ cannot_publish:
+     return ret;
+ }
+ 
++int esp_mqtt_client_publish_custom(esp_mqtt_client_handle_t client, const char *topic, const char *data, int len, int qos, int retain)
++{
++    uint16_t pending_msg_id = 0;
++    int ret = 0;
++
++    /* Acceptable publish messages:
++        data == NULL, len == 0: publish null message
++        data valid,   len == 0: publish all data, payload len is determined from string length
++        data valid,   len >  0: publish data with defined length
++     */
++    if (len <= 0 && data != NULL) {
++        len = strlen(data);
++    }
++
++    MQTT_API_LOCK(client);
++    mqtt_message_t *publish_msg = mqtt_msg_publish(&client->mqtt_state.mqtt_connection,
++                                  topic, data, len,
++                                  qos, retain,
++                                  &pending_msg_id);
++
++    if (publish_msg->length == 0) {
++        ESP_LOGE(TAG, "Publish message cannot be created");
++        MQTT_API_UNLOCK(client);
++        return -1;
++    }
++    /* We have to set as pending all the qos>0 messages */
++    client->mqtt_state.outbound_message = publish_msg;
++    if (qos > 0) {
++        client->mqtt_state.pending_msg_type = mqtt_get_type(client->mqtt_state.outbound_message->data);
++        client->mqtt_state.pending_msg_id = pending_msg_id;
++        client->mqtt_state.pending_publish_qos = qos;
++        client->mqtt_state.pending_msg_count ++;
++        // by default store as QUEUED (not transmitted yet) only for messages which would fit outbound buffer
++        if (client->mqtt_state.mqtt_connection.message.fragmented_msg_total_length == 0) {
++            mqtt_enqueue(client);
++        } else {
++            int first_fragment = client->mqtt_state.outbound_message->length - client->mqtt_state.outbound_message->fragmented_msg_data_offset;
++            mqtt_enqueue_oversized(client, ((uint8_t *)data) + first_fragment, len - first_fragment);
++        }
++    }
++    MQTT_API_UNLOCK(client);
++    return pending_msg_id;
++}
+ 
+ esp_err_t esp_mqtt_client_register_event(esp_mqtt_client_handle_t client, esp_mqtt_event_id_t event, esp_event_handler_t event_handler, void* event_handler_arg)
+ {
+-- 
+2.18.0.windows.1
+

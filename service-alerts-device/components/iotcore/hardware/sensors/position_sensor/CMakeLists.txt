@@ -1,0 +1,1 @@
+include(${CMAKE_CURRENT_LIST_DIR}/AS5045/CMakeLists.txt)

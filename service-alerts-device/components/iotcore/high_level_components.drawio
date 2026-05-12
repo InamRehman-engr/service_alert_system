@@ -1,0 +1,97 @@
+<mxfile host="65bd71144e">
+    <diagram id="XTxpWOcRcFamc0pZxD_V" name="Page-1">
+        <mxGraphModel dx="4214" dy="2278" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="Rest API Client&lt;br&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="340" y="430" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="Iotcore Server APIs" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="340" y="350" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="Wifi Manager&lt;br&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="160" y="510" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="Ethernet&amp;nbsp;&lt;br&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="20" y="510" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="Modem" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="-120" y="510" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="Connectivity" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="-250" y="430" width="530" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="Ping" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="-250" y="510" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="Data Event Loop" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="-690" y="510" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="Info Event Loop" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="-550" y="510" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="Error Event Loop" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="-410" y="510" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="Iotcore Events" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="-690" y="430" width="400" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="App MQTT" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="540" y="510" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="Idf Framework" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="-1190" y="600" width="2070" height="180" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="ESP32(Hardware)" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="-1189" y="790" width="2069" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="Default mqtt client" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="540" y="350" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="19" value="Native Ota" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="720" y="510" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="20" value="Http ota" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="720" y="420" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="21" value="Netif Transport" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="-250" y="600" width="710" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="22" value="App Iotcore" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="-690" y="160" width="1570" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" value="Network Event Handler" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="-170" y="260" width="150" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="24" value="Network cb" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="540" y="260" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="25" value="OTA cb" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="720" y="260" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="26" value="Wifi manager provisioning api" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="160" y="350" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="27" value="Http Webserver" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="30" y="260" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="29" value="esp mqtt" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="540" y="600" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="30" value="esp partition &amp;amp; spi flash" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="720" y="600" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="31" value="Freertos event loop" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="-672" y="600" width="390" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="32" value="Hardware Interfaces" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="-1190" y="430" width="480" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="33" value="Device drivers" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="-1190" y="160" width="480" height="260" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

@@ -1,0 +1,14 @@
+menu "Hardware"
+    # config ENABLE_HARDWARE
+    #     bool "Enable hardware components of esp32"
+    #     default n
+    # if ENABLE_HARDWARE
+    #     rsource "peripherals/Kconfig"
+    # endif
+
+    rsource "communication_interfaces/Kconfig"
+    rsource "sensors/Kconfig"
+    rsource "peripherals/Kconfig"
+    rsource "power/Kconfig"
+
+endmenu

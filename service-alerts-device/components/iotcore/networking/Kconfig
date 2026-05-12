@@ -1,0 +1,154 @@
+menu "Networking Configuration"
+    menu "Connectivity"
+
+        menuconfig ENABLE_WIFI
+            bool "Enable WiFi"
+            default y
+            help
+                Enable or disable WiFi support in your project.
+                Enabling WiFi may require additional configuration and libraries.        
+        if ENABLE_WIFI
+            rsource "connectivity/wifi/Kconfig"
+        endif
+
+        config ENABLE_ETHERNET
+            bool "Enable Ethernet"
+            default n
+            help
+                Enable or disable Ethernet support in your project.
+                Enabling Ethernet may require additional configuration and libraries
+        if ENABLE_ETHERNET
+            rsource "connectivity/ethernet/Kconfig"
+        endif
+
+        config ENABLE_BLE
+            bool "Enable BLE"
+            default n
+            help
+                Enable or disable BLE support in your project.
+        if ENABLE_BLE
+            rsource "connectivity/ble/Kconfig"
+        endif
+
+        config ENABLE_MODEM
+            bool "Enable MODEM Component"
+            depends on LWIP_PPP_SUPPORT
+            default n
+            help
+               Turns on support for modem component. Need LWIP_PPP_SUPPORT to be enabled in LWIP config
+        if ENABLE_MODEM
+            rsource "connectivity/modem/Kconfig"
+        endif
+        config ENABLE_GSM
+            bool "Enable GSM"
+            default n
+            help
+                Enable or disable GSM support.
+
+        config ENABLE_EPPP_CLIENT
+            depends on ENABLE_EPPP_LINK
+            bool "Enable default EPPP Client"
+            default n
+            help
+                Enable or disable EPPP_LINK as a network provider in your project.
+
+        config PING_IP_ADDRESS
+            string "IP Address for Ping Service"
+            default "8.8.8.8"
+            help
+                Enter IP address for ping service. Uses Google DNS 8.8.8.8 by default.
+
+        config PING_INTERVAL_MS
+            int "Ping Interval in milliseconds"
+            default 3000
+            help
+                Enter interval in milliseconds between subsequent pings. Uses 3000 milliseconds by default.
+
+        config PING_TIMEOUT_MS
+            int "Ping Timeout in milliseconds"
+            default 2000
+            help
+                Enter time in milliseconds for ping to timeout. Uses 2000 milliseconds by default.
+        
+        config MAX_PING_FAILURES
+            int "Maximum Ping Failures"
+            default 15
+            help
+                Enter maximum number of ping failures allowed. Exceeding this number means network lost. Set to 15 by default 
+    endmenu
+
+    menu "Protocols"
+        config ENABLE_HTTP_SERVER
+            bool "Enable HTTP Server"
+            default y
+            help 
+                Enable or disable HTTP server.
+
+        config ENABLE_SOCKETS
+            bool "Enable TCP sockets"
+            default y
+            help 
+                Enable or disbale TCP sockets.
+        
+        config ENABLE_MQTT
+            bool "Enable MQTT"
+            default y 
+            help
+                Enable for disable MQTT functionality.
+            if ENABLE_MQTT
+                rsource "protocols/mqtt/Kconfig"
+            endif
+
+        config REST_API_CLIENT
+            bool "Enable rest client"
+            default n
+            help
+              Client for providing functionality of making http/s calls
+            rsource "protocols/REST_API_CLIENT/Kconfig"
+        
+        config ENABLE_EPPP_SERVER
+            depends on ENABLE_EPPP_LINK
+            bool "Enable EPPP Server"
+            default n
+            help
+                Enables default server for providing Internet over EPPP Link
+        
+        config ENABLE_NETWORK_UI
+            depends on ENABLE_WIFI
+            bool "Enable Network Web UI"
+            default n
+            help
+                Enables a basic web-based network configuration UI.
+
+        
+        config ENABLE_FIRMWARE_UPLOAD_UI
+            depends on ENABLE_OTA
+            bool "Enable Firmware Upload Web UI"
+            default n
+            help
+                Enables the web-based UI for uploading firmware files over HTTP.
+
+        
+    endmenu
+
+    menu "VHMI"
+        config ENABLE_VHMI
+            bool "Enable vHMI"
+            default y
+            help 
+                Enable or disable the vHMI functionality.
+    endmenu
+
+    menu "EPPP Link"
+        config ENABLE_EPPP_LINK
+            bool "Enable EPPP Link"
+            default n
+            help
+                Enable or disable EPPP_LINK as a network provider in your project. Needs LWIP_PPP_SUPPORT, LWIP_PPP_SERVER_SUPPORT, LWIP_IP_FORWARD and LWIP_IPV4_NAPT to be enabled in LWIP config
+                Provides internet over UART (and SPI/SDPIO).
+                    
+        if ENABLE_EPPP_LINK
+            rsource "eppp_link/Kconfig"
+        endif
+    endmenu
+endmenu

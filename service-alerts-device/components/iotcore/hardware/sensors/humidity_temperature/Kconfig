@@ -1,0 +1,15 @@
+config ENABLE_SHTC3
+    bool "Enable SHTC3 Sensor"
+    default n
+    
+config ENABLE_SI7006_A20
+    bool "Enable SI7006_A20 Sensor"
+    default n
+
+config ENABLE_AHT10
+    bool "Enable AHT10 Sensor"
+    default n
+
+config ENABLE_MAX31855K
+    bool "Enable MAX31855K Sensor"
+    default n

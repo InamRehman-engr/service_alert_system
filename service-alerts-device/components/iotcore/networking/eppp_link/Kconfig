@@ -1,0 +1,192 @@
+menu "eppp_link"
+
+    config EPPP_LINK_USES_LWIP
+        bool "Enable LWIP for EPPP"
+        default "y"
+        select LWIP_PPP_SUPPORT
+        select LWIP_PPP_SERVER_SUPPORT
+        help
+            Enable LWIP PPP support for EPPP.
+
+    choice EPPP_LINK_DEVICE
+        prompt "Choose PPP transport device"
+        default EPPP_LINK_DEVICE_UART
+        help
+            Select the transport peripheral to use for PPP link.
+
+        config EPPP_LINK_DEVICE_UART
+            bool "UART"
+            help
+                Use UART for PPP link.
+
+        config EPPP_LINK_DEVICE_SPI
+            bool "SPI"
+            help
+                Use SPI for PPP link.
+
+        config EPPP_LINK_DEVICE_SDIO
+            bool "SDIO"
+            depends on SOC_SDMMC_HOST_SUPPORTED || SOC_SDIO_SLAVE_SUPPORTED
+            help
+                Use SDIO for PPP link.
+
+    endchoice
+
+    if EPPP_LINK_DEVICE_UART
+        config EPPP_UART_BAUD_RATE
+            int "UART baud rate"
+            default 921600
+            help
+                Set the baud rate for UART.
+
+        config EPPP_UART_TX_IO
+            int "UART TX IO"
+            default 5
+            help
+                GPIO number for UART TX.
+
+        config EPPP_UART_RX_IO
+            int "UART RX IO"
+            default 7
+            help
+                GPIO number for UART RX.
+
+        config EPPP_UART_PORT
+            int "UART Port number"
+            default 1
+            range 0 2
+            help
+                UART Port Number.
+
+        config EPPP_UART_QUEUE_SIZE
+            int "UART queue size"
+            default 32
+            help
+                Queue size for uart events.
+
+        config EPPP_UART_RX_BUFFER_SIZE
+            int "UART RX buffer size"
+            default 2048
+            help
+                Receive buffer maximum size.
+        
+    endif
+
+    if EPPP_LINK_DEVICE_SPI
+        config EPPP_SPI_HOST
+            int "SPI host number"
+            default 1
+            help
+                SPI host number (HSPI or VSPI).
+
+        config EPPP_SPI_MOSI_IO
+            int "SPI MOSI IO"
+            default 11
+            help
+                GPIO number for SPI MOSI.
+
+        config EPPP_SPI_MISO_IO
+            int "SPI MISO IO"
+            default 13
+            help
+                GPIO number for SPI MISO.
+
+        config EPPP_SPI_SCLK_IO
+            int "SPI SCLK IO"
+            default 12
+            help
+                GPIO number for SPI SCLK.
+
+        config EPPP_SPI_CS_IO
+            int "SPI CS IO"
+            default 10
+            help
+                GPIO number for SPI CS.
+
+        config EPPP_SPI_INTR_IO
+            int "SPI interrupt IO"
+            default 2
+            help
+                GPIO number for SPI interrupt.
+
+        config EPPP_SPI_FREQ
+            int "SPI frequency (Hz)"
+            default 16000000
+            help
+                Frequency for SPI communication.
+    endif
+
+    if EPPP_LINK_DEVICE_SDIO
+        config EPPP_SDIO_WIDTH
+            int "SDIO width"
+            default 4
+            help
+                SDIO bus width.
+
+        config EPPP_SDIO_CLK_IO
+            int "SDIO clock IO"
+            default 18
+            help
+                GPIO number for SDIO clock.
+
+        config EPPP_SDIO_CMD_IO
+            int "SDIO command IO"
+            default 19
+            help
+                GPIO number for SDIO command.
+
+        config EPPP_SDIO_D0_IO
+            int "SDIO D0 IO"
+            default 49
+            help
+                GPIO number for SDIO D0 line.
+
+        config EPPP_SDIO_D1_IO
+            int "SDIO D1 IO"
+            default 50
+            help
+                GPIO number for SDIO D1 line.
+
+        config EPPP_SDIO_D2_IO
+            int "SDIO D2 IO"
+            default 16
+            help
+                GPIO number for SDIO D2 line.
+
+        config EPPP_SDIO_D3_IO
+            int "SDIO D3 IO"
+            default 17
+            help
+                GPIO number for SDIO D3 line.
+    endif
+
+    menu "Task Configuration"
+
+        config EPPP_TASK_STACK_SIZE
+            int "Task stack size"
+            default 4096
+            help
+                Set the stack size for the EPPP task.
+
+        config EPPP_TASK_PRIORITY
+            int "Task priority"
+            default 8
+            help
+                Set the priority for the EPPP task.
+    endmenu
+
+    menu "PPP Configuration"
+        config EPPP_SERVER_IP
+            string "EPPP Server IP"
+            default "192.168.11.1"
+            help
+                IP address for the EPPP server.
+
+        config EPPP_CLIENT_IP
+            string "EPPP Client IP"
+            default "192.168.11.2"
+            help
+                IP address for the EPPP client.
+    endmenu
+
+endmenu

@@ -1,0 +1,131 @@
+menu "Ethernet Configuration"
+
+    orsource "$IDF_PATH/examples/common_components/env_caps/$IDF_TARGET/Kconfig.env_caps"
+
+    choice
+        prompt "Select Ethernet Type"
+        default ENABLE_SPI_ETHERNET
+
+        config ENABLE_INTERNAL_ETHERNET
+            bool "Internal Ethernet"
+            depends on IDF_TARGET_ESP32
+            select ETH_USE_ESP32_EMAC
+
+        config ENABLE_SPI_ETHERNET
+            bool "SPI Internet"
+            depends on ETH_SPI_ETHERNET_W5500
+    endchoice
+
+    if ENABLE_INTERNAL_ETHERNET
+        choice EXAMPLE_ETH_PHY_MODEL
+            prompt "Ethernet PHY Device"
+            default ETH_PHY_LAN87XX
+            help
+                Select the Ethernet PHY device to use in the example.
+            config ETH_PHY_LAN87XX
+                bool "LAN87xx"
+                help
+                    Below chips are supported:
+                    LAN8710A is a small footprint MII/RMII 10/100 Ethernet Transceiver with HP Auto-MDIX and
+                        flexPWR® Technology.
+                    LAN8720A is a small footprint RMII 10/100 Ethernet Transceiver with HP Auto-MDIX Support.
+                    LAN8740A/LAN8741A is a small footprint MII/RMII 10/100 Energy Efficient Ethernet Transceiver
+                        with HP Auto-MDIX and flexPWR® Technology.
+                    LAN8742A is a small footprint RMII 10/100 Ethernet Transceiver with HP Auto-MDIX and
+                        flexPWR® Technology.
+                    Goto https://www.microchip.com for more information about them.
+        endchoice
+            
+        menu "Ethernet PHY Configuration"
+
+            config ETH_MDC_GPIO
+            int "SMI MDC GPIO number"
+            range ENV_GPIO_RANGE_MIN ENV_GPIO_OUT_RANGE_MAX
+            default 23
+            help
+                Set the GPIO number used by SMI MDC.
+
+        config ETH_MDIO_GPIO
+            int "SMI MDIO GPIO number"
+            range ENV_GPIO_RANGE_MIN ENV_GPIO_OUT_RANGE_MAX
+            default 18
+            help
+                Set the GPIO number used by SMI MDIO.
+
+        config ETH_PHY_RST_GPIO
+            int "PHY Reset GPIO number"
+            range -1 ENV_GPIO_OUT_RANGE_MAX
+            default 5
+            help
+                Set the GPIO number used to reset PHY chip.
+                Set to -1 to disable PHY chip hardware reset.
+
+        config ETH_PHY_ADDR
+            int "PHY Address"
+            range 0 31
+            default 1
+            help
+                Set PHY address according your board schematic
+        endmenu
+        
+    endif
+
+    if ENABLE_SPI_ETHERNET
+        choice
+            prompt "Select SPI Host"
+            depends on ENABLE_ETHERNET
+            default HSPI_HOST
+
+            config HSPI_HOST
+                bool "HSPI_HOST"
+            config VSPI_HOST
+                bool "VSPI Host"
+        endchoice
+
+        config ETH_SPI_HOST
+            depends on ENABLE_ETHERNET
+            int
+            default 1 if HSPI_HOST
+            default 2 if VSPI_HOST
+
+        menu "Pin Configuration"
+            config ETH_SPI_CS_PIN
+                int "CS Pin"
+                default 0
+                range ENV_GPIO_RANGE_MIN ENV_GPIO_OUT_RANGE_MAX
+                help
+                    Pin number of SPI CS.
+
+            config ETH_SPI_INT_PIN
+                int "INT Pin"
+                default -1
+                range -1 ENV_GPIO_OUT_RANGE_MAX
+                help
+                    Pin number of Interrupt.
+
+            config ETH_SPI_RST_PIN
+                int "RST Pin"
+                default -1
+                range -1 ENV_GPIO_OUT_RANGE_MAX
+                help
+                    Pin number of Reset.
+        endmenu
+
+        menu "Ethernet Configuration"
+            config ETH_PHY_ADDR
+                int "PHY address"
+                default 1
+                range 0 31
+                help
+                    PHY address of SPI Ethernet.
+
+            config ETH_SPI_CLK_SPEED
+                int "SPI clock speed (MHz)"
+                default 36
+                range 34 80
+                help
+                    SPI clock speed for W5500.
+        endmenu
+    endif
+
+endmenu

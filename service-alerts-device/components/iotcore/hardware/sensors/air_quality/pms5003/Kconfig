@@ -1,0 +1,3 @@
+config ENABLE_PMS5003
+    bool "Enable PMS5003 Sensor"
+    default n

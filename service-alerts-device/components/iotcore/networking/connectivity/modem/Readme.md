@@ -1,0 +1,1 @@
+This component will provide interface to modem. Will operate in CMUX mode for sim868 mode for now. Will see if other modems can be used the same way

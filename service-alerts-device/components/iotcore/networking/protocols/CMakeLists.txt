@@ -1,0 +1,5 @@
+include(${CMAKE_CURRENT_LIST_DIR}/http/CMakeLists.txt)
+include(${CMAKE_CURRENT_LIST_DIR}/mqtt/CMakeLists.txt)
+include(${CMAKE_CURRENT_LIST_DIR}/eppp_server/CMakeLists.txt)
+# include(${CMAKE_CURRENT_LIST_DIR}/sockets/CMakeLists.txt)
+include(${CMAKE_CURRENT_LIST_DIR}/REST_API_CLIENT/CMakeLists.txt)

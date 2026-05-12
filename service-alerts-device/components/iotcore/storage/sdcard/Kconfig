@@ -1,0 +1,53 @@
+menu "SD Card Configuration"
+
+    choice Select_Communication_Mode
+        prompt "Communication Mode"
+        default USE_SPI
+        config USE_SPI
+            bool "USE SPI"
+        config USE_SD_BUS
+            bool "USE SD BUS"
+    endchoice
+
+    config PIN_NUM_MISO
+        depends on USE_SPI
+        default 2
+        int "PIN NUM MISO"
+    
+    config PIN_NUM_MOSI
+        depends on USE_SPI
+        default 15
+        int "PIN NUM MOSI"
+    config PIN_NUM_CLK
+        depends on USE_SPI
+        default 14
+        int "PIN NUM CLK"
+    config PIN_NUM_CS
+        depends on USE_SPI
+        default 13
+        int "PIN NUM CS"
+
+    
+
+    config PIN_CMD
+        depends on USE_SD_BUS
+        default 15
+        int "CMD PIN"
+    config PIN_D0
+        depends on USE_SD_BUS
+        default 2
+        int "PIN D0"
+    config PIN_D1
+        depends on USE_SD_BUS
+        default 4
+        int "PIN D1"
+    config PIN_D2
+        depends on USE_SD_BUS
+        default 12
+        int "PIN D2"
+    config PIN_D3
+        depends on USE_SD_BUS
+        default 13
+        int "PIN D3"
+    
+endmenu

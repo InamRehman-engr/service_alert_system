@@ -1,0 +1,5 @@
+menu "ADE7758 Sensor IC"
+    config ENABLE_ADE7758
+        bool "Enable ADE7758 Sensor IC"
+        default n
+endmenu

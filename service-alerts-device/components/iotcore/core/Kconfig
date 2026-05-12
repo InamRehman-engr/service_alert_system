@@ -1,0 +1,39 @@
+menu "Core lib"
+    config ENABLE_BATTERY_CHARGING
+        bool "Enable battery charging"
+        default n
+        help
+            Enable or disable battery charging.
+    if ENABLE_BATTERY_CHARGING
+        rsource "battery_charging/Kconfig"
+    endif
+    config ENABLE_BILLING
+        bool "Enable billing"
+        default n
+        help
+            Enable or disable billing.
+    
+    config ENABLE_IOTCORE_EVENTS
+        bool "Enable IoT Core events"
+        default y
+        help
+            Enable or disable IoT Core events
+    if ENABLE_IOTCORE_EVENTS
+            rsource "events/Kconfig"
+    endif
+
+    config ENABLE_IOTCORE_SERVER_API
+        bool "Enable HTTP Call"
+        default n
+        depends on REST_API_CLIENT
+        help
+            Enable or disable HTTP Call
+
+    config ENABLE_IOTCORE_SERVER_API_EMBED_JSON
+        bool "Enable embedding JSON"
+        default n
+        depends on ENABLE_IOTCORE_SERVER_API
+        help
+            Enable embedded device specific json
+
+endmenu

@@ -1,0 +1,7 @@
+include(${CMAKE_CURRENT_LIST_DIR}/firmware_updates/CMakeLists.txt)
+include(${CMAKE_CURRENT_LIST_DIR}/sysinfo/CMakeLists.txt)
+include(${CMAKE_CURRENT_LIST_DIR}/status_monitoring/CMakeLists.txt)
+include(${CMAKE_CURRENT_LIST_DIR}/status_reporting/CMakeLists.txt)
+include(${CMAKE_CURRENT_LIST_DIR}/system_partition/CMakeLists.txt)
+# include(${CMAKE_CURRENT_LIST_DIR}/power_management/CMakeLists.txt)
+# include(${CMAKE_CURRENT_LIST_DIR}/timing/CMakeLists.txt)

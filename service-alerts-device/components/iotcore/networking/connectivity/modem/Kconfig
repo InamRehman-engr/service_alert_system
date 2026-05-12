@@ -1,0 +1,89 @@
+menu "Modem Configuration"
+    rsource "esp_modem/Kconfig"
+    choice MODEM_SERIAL_CONFIG
+        prompt "Type of serial connection to the modem"
+        default MODEM_SERIAL_CONFIG_UART
+        config MODEM_SERIAL_CONFIG_UART
+            bool "UART"
+            help
+                Connect to modem via UART.
+        config MODEM_SERIAL_CONFIG_USB
+            bool "USB"
+            depends on IDF_TARGET_ESP32S2 || IDF_TARGET_ESP32S3
+            help
+                Connect to modem via USB (CDC-ACM class). For IDF version >= 4.4.
+    endchoice
+    config MODEM_PPP_APN
+        string "Set MODEM APN"
+        default "internet"
+        help
+            Set APN (Access Point Name), a logical name to choose data network
+
+    choice FLOW_CONTROL
+        bool "Set preferred modem control flow"
+        default FLOW_CONTROL_NONE
+        help
+            Set the modem's preferred control flow
+
+        config FLOW_CONTROL_NONE
+            bool "No control flow"
+        config FLOW_CONTROL_SW
+            bool "SW control flow"
+        config FLOW_CONTROL_HW
+            bool "HW control flow"
+    endchoice
+
+    menu "UART Configuration"
+        config MODEM_UART_TX_PIN
+            int "TXD Pin Number"
+            default 25
+            range 0 31
+            help
+                Pin number of UART TX.
+
+        config MODEM_UART_RX_PIN
+            int "RXD Pin Number"
+            default 26
+            range 0 31
+            help
+                Pin number of UART RX.
+
+        config MODEM_UART_RTS_PIN
+            int "RTS Pin Number"
+            default 27
+            range 0 31
+            help
+                Pin number of UART RTS.
+
+        config MODEM_UART_CTS_PIN
+            int "CTS Pin Number"
+            default 23
+            range 0 31
+            help
+                Pin number of UART CTS.
+    endmenu
+    
+    menu "MODEM_POWER_CONTROL"
+        config MODEM_PWRKEY
+            int "Pin number for pwrkey"
+            default -1
+            help
+              This be the pin number that will be used to control power to the modem. 
+              If not used set -1 but POWER_SWITCH_KEY will be required
+        config MODEM_POWER_SWITCH_KEY
+            int "Pin number for high side switch of modem"
+            default 9
+            help
+              This pin will be used to control power to the modem if pwrkey is not defined
+        
+    endmenu
+
+    config EXAMPLE_USE_VFS_TERM
+        bool "Use VFS terminal"
+        default n
+        help
+            Demonstrate use of VFS as a communication terminal of the DTE.
+            VFS driver implements non-block reads, writes and selects to communicate with esp-modem,
+            but this implementation uses UART resource only.
+
+endmenu

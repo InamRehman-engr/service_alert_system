@@ -1,0 +1,4 @@
+if(CONFIG_ENABLE_OPT3001)
+    list(APPEND srcs "${CMAKE_CURRENT_LIST_DIR}/OPT3001.c")
+    list(APPEND includes "${CMAKE_CURRENT_LIST_DIR}/")
+endif()

@@ -1,0 +1,8 @@
+menu "UART Configuration"
+
+    config UART_BUFFER_SIZE
+        int "UART BUFFER SIZE"
+        default 1024
+        help
+            UART BUFFER SIZE.        
+endmenu

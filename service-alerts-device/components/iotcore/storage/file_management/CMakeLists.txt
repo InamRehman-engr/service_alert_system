@@ -1,0 +1,5 @@
+if(CONFIG_ENABLE_LITTLEFS)
+    list(APPEND srcs "${CMAKE_CURRENT_LIST_DIR}/file_mgmt.c")
+    list(APPEND includes "${CMAKE_CURRENT_LIST_DIR}/")
+    include(${CMAKE_CURRENT_LIST_DIR}/littlefs/CMakeLists.txt)
+endif()

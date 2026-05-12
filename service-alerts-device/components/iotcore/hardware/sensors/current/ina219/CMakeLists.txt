@@ -1,0 +1,4 @@
+if(CONFIG_ENABLE_INA219)
+    list(APPEND srcs "${CMAKE_CURRENT_LIST_DIR}/INA219.c")
+    list(APPEND includes "${CMAKE_CURRENT_LIST_DIR}/")
+endif()

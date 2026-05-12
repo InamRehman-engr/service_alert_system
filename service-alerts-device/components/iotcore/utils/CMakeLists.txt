@@ -1,0 +1,5 @@
+include(${CMAKE_CURRENT_LIST_DIR}/dc_codes/CMakeLists.txt)
+include(${CMAKE_CURRENT_LIST_DIR}/utility/CMakeLists.txt)
+include(${CMAKE_CURRENT_LIST_DIR}/url_encoding/CMakeLists.txt)
+include(${CMAKE_CURRENT_LIST_DIR}/error_handling/CMakeLists.txt)
+include(${CMAKE_CURRENT_LIST_DIR}/json/CMakeLists.txt)

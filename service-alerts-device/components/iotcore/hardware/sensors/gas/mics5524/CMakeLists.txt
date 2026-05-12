@@ -1,0 +1,4 @@
+if(CONFIG_ENABLE_MICS5524)
+    list(APPEND srcs "${CMAKE_CURRENT_LIST_DIR}/MiCS_5524.c")
+    list(APPEND includes "${CMAKE_CURRENT_LIST_DIR}/")
+endif()

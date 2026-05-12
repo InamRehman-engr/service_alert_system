@@ -1,0 +1,5 @@
+if(CONFIG_ENABLE_ERROR_HANDLING)
+    list(APPEND srcs "${CMAKE_CURRENT_LIST_DIR}/errorHandling.c")
+    list(APPEND includes "${CMAKE_CURRENT_LIST_DIR}/")
+endif()
+include(${CMAKE_CURRENT_LIST_DIR}/data_modals/CMakeLists.txt)

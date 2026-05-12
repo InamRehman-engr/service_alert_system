@@ -1,0 +1,11 @@
+list(APPEND srcs "${CMAKE_CURRENT_LIST_DIR}/src/esp_littlefs.c")
+list(APPEND srcs "${CMAKE_CURRENT_LIST_DIR}/src/littlefs/lfs_util.c")
+list(APPEND srcs "${CMAKE_CURRENT_LIST_DIR}/src/littlefs/lfs.c")
+list(APPEND srcs "${CMAKE_CURRENT_LIST_DIR}/src/littlefs_esp_part.c")
+if(CONFIG_LITTLEFS_SDMMC_SUPPORT)
+    list(APPEND srcs "${CMAKE_CURRENT_LIST_DIR}/src/littlefs_sdmmc.c")
+endif()
+
+list(APPEND includes "${CMAKE_CURRENT_LIST_DIR}/include/")
+list(APPEND includes "${CMAKE_CURRENT_LIST_DIR}/src/")
+list(APPEND includes "${CMAKE_CURRENT_LIST_DIR}/src/littlefs")

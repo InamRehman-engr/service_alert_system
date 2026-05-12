@@ -1,0 +1,7 @@
+image: python:3.10.5-slim-buster
+
+lint:
+  script:
+    - pip install clang-format==17.0.6
+    - changes_detected=0; for file in $(find . -type f \( -name "*.c" -o -name "*.cpp" -o -name "*.cxx" -o -name "*.h" -o -name "*.hpp" -o -name "*.cu" \)); do clang-format --dry-run --Werror "$file"; if [ $? -ne 0 ]; then changes_detected=1; fi; done; if [ $changes_detected -eq 1 ]; then echo "clang-format made changes to some files."; exit 1; else echo "No changes made by clang-format."; fi
+  allow_failure: false

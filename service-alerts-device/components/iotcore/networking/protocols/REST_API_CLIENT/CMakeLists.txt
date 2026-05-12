@@ -1,0 +1,6 @@
+if (CONFIG_REST_API_CLIENT)
+    list(APPEND srcs "${CMAKE_CURRENT_LIST_DIR}/src/http_event_handler.c")
+    list(APPEND srcs "${CMAKE_CURRENT_LIST_DIR}/src/http_rest_client.c")
+    list(APPEND srcs "${CMAKE_CURRENT_LIST_DIR}/src/http_rest_json_client.c")
+    list(APPEND includes "${CMAKE_CURRENT_LIST_DIR}/include/")
+endif()

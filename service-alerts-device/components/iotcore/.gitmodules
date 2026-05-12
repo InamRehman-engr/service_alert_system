@@ -1,0 +1,6 @@
+[submodule "networking/connectivity/modem/esp_modem"]
+	path = networking/connectivity/modem/esp_modem
+	url = ../../embedded/cowlar_modem_gsm.git
+[submodule "system/firmware_updates/delta_ota/delta_ota_component"]
+	path = system/firmware_updates/delta_ota/delta_ota_component
+	url = ../../embedded/esp32-components/delta-ota.git

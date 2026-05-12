@@ -1,0 +1,25 @@
+From eb271ec4fafc814229e938d5e427657d5d53c133 Mon Sep 17 00:00:00 2001
+From: usama_cowlar <usama@cowlar.com>
+Date: Tue, 22 Dec 2020 17:50:45 +0500
+Subject: [PATCH] forced terminate ppp connection
+
+---
+ components/esp_netif/lwip/esp_netif_lwip_ppp.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/components/esp_netif/lwip/esp_netif_lwip_ppp.c b/components/esp_netif/lwip/esp_netif_lwip_ppp.c
+index bea508da1..c63fa1a03 100644
+--- a/components/esp_netif/lwip/esp_netif_lwip_ppp.c
++++ b/components/esp_netif/lwip/esp_netif_lwip_ppp.c
+@@ -302,7 +302,7 @@ void esp_netif_lwip_ppp_input(void *ppp_ctx, void *buffer, size_t len, void *eb)
+ esp_err_t esp_netif_stop_ppp(lwip_ppp_ctx_t *ppp_ctx)
+ {
+     ESP_LOGD(TAG, "%s: Stopped PPP connection: %p", __func__, ppp_ctx->ppp);
+-    err_t ret = pppapi_close(ppp_ctx->ppp, 0);
++    err_t ret = pppapi_close(ppp_ctx->ppp, 1);
+     if (ret != ERR_OK) {
+         ESP_LOGE(TAG, "pppapi_close failed with %d", ret);
+         return ESP_FAIL;
+-- 
+2.25.0.windows.1
+

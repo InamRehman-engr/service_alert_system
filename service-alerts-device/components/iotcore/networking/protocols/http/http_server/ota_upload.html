@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>OTA Firmware Upload</title>
+  <style>
+    body {
+      font-family: Verdana, sans-serif;
+      background-color: #FBF9F1;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      height: 100vh;
+      color: #1B1C17;
+    }
+
+    h1 {
+      color: #4C6707;
+      margin-top: 30px;
+    }
+
+    form {
+      background-color: #EFEEE6;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 400px;
+      margin-top: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 1.1em;
+    }
+
+    input[type="file"],
+    input[type="text"],
+    input[type="submit"],
+    input[type="checkbox"] {
+      width: 100%;
+      padding: 12px;
+      font-size: 1em;
+      margin-bottom: 20px;
+      border-radius: 6px;
+      border: 1px solid #C9D996;
+      box-sizing: border-box;
+    }
+
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+    }
+
+    .checkbox-group input[type="checkbox"] {
+      width: auto;
+      margin: 0;
+    }
+
+    .checkbox-group label {
+      margin-left: 8px;
+      font-size: 1em;
+      margin-bottom: 0;
+    }
+
+    input[type="submit"] {
+      background-color: #4C6707;
+      color: #FBF9F1;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #C9D996;
+    }
+  </style>
+</head>
+<body>
+  <h1>OTA Firmware Upload</h1>
+  <form id="otaForm">
+    <label for="pin">Device PIN</label>
+    <input type="text" id="pin" name="pin" placeholder="Enter device PIN" required>
+
+    <label for="hwver">Hardware Version</label>
+    <input type="text" id="hwver" name="hwver" placeholder="e.g. esp32_v1.2" required>
+
+    <label for="fwver">Firmware Version</label>
+    <input type="text" id="fwver" name="fwver" placeholder="e.g. v1.0.0" required>
+
+    <div class="checkbox-row">
+      <div class="checkbox-group">
+        <input type="checkbox" id="rollback" name="rollback">
+        <label for="rollback">Rollback</label>
+      </div>
+      <div class="checkbox-group">
+        <input type="checkbox" id="delta" name="delta">
+        <label for="delta">Delta</label>
+      </div>
+    </div>
+
+    <label for="firmware">Select .bin File</label>
+    <input type="file" id="firmware" name="firmware" accept=".bin" required>
+
+    <input type="submit" value="Upload Firmware" id="uploadBtn">
+    <progress id="uploadProgress" value="0" max="100" style="width:100%; display:none;"></progress>
+    <p id="progressText" style="text-align:center; margin-top:10px;"></p>
+  </form>
+
+  <script>
+    document.getElementById("otaForm").addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const pin = document.getElementById("pin").value.trim();
+      const hwver = document.getElementById("hwver").value.trim();
+      const fwver = document.getElementById("fwver").value.trim();
+      const rollback = document.getElementById("rollback").checked ? "1" : "0";
+      const delta = document.getElementById("delta").checked ? "1" : "0";
+      const fileInput = document.getElementById("firmware");
+      const file = fileInput.files[0];
+      const uploadBtn = document.getElementById("uploadBtn");
+      const progressBar = document.getElementById("uploadProgress");
+      const progressText = document.getElementById("progressText");
+
+      const fwRegex = /^v\d+\.\d+\.\d+$/;
+      const hwRegex = /^[a-zA-Z0-9]+_[vV]?[0-9a-zA-Z]+(\.[0-9a-zA-Z]+)*$/;
+
+      if (!fwRegex.test(fwver)) {
+        alert("Firmware version must be in format v[major].[minor].[sub] (e.g. v1.0.0)");
+        return;
+      }
+
+      if (!hwRegex.test(hwver)) {
+        alert("Hardware version must be in format [text]_[version] (e.g. esp32_v1.2)");
+        return;
+      }
+
+      if (!file || !file.name.endsWith(".bin")) {
+        alert("Please select a valid .bin file.");
+        return;
+      }
+
+      const url = `http://192.168.4.1/ota_upload?pin=${encodeURIComponent(pin)}&hwver=${encodeURIComponent(hwver)}&fwver=${encodeURIComponent(fwver)}&rollback=${rollback}&delta=${delta}`;
+
+      // Disable submit button during upload
+      uploadBtn.disabled = true;
+      uploadBtn.value = "Uploading...";
+
+      progressBar.style.display = "block";
+      progressBar.value = 0;
+      progressText.innerText = "Starting upload...";
+
+      const xhr = new XMLHttpRequest();
+      xhr.open("POST", url, true);
+      xhr.setRequestHeader("Content-Type", "application/octet-stream");
+
+      xhr.upload.onprogress = function (event) {
+        if (event.lengthComputable) {
+          const percent = Math.round((event.loaded / event.total) * 100);
+          progressBar.value = percent;
+          progressText.innerText = `Uploading: ${percent}%`;
+        }
+      };
+
+       xhr.onload = function () {
+          console.log("Status:", xhr.status);
+          console.log("Status Text:", xhr.statusText);
+          console.log("Response:", xhr.responseText);
+
+          if (xhr.status === 0 || (xhr.status >= 200 && xhr.status < 300)) {
+            progressText.innerText = "Upload complete. Device may be restarting...";
+          } else {
+            progressText.innerText = `Upload failed.\nStatus: ${xhr.status} ${xhr.statusText}\nMessage: ${xhr.responseText}`;
+            alert(`Upload failed: ${xhr.responseText}`);
+          }
+
+          // Re-enable button and clear file input
+          resetForm();
+        };
+      function addToLog(msg) {
+        if (responseLog.length >= maxLogEntries) responseLog.shift();
+        responseLog.push(msg);
+        console.log("OTA Response Log:", [...responseLog]);  // ✅ Print all logs to console
+        renderLog();
+      }
+
+
+      xhr.onerror = function () {
+        console.error("XHR error:", xhr.statusText, xhr.responseText);
+
+        let errorMsg = "Upload failed: ";
+        if (xhr.responseText) {
+          errorMsg += xhr.responseText;
+        } else if (xhr.status === 0) {
+          errorMsg += "Connection was reset. Device rejected the upload.";
+        } else {
+          errorMsg += xhr.statusText || "Unknown error occurred.";
+        }
+
+        progressText.innerText = errorMsg;
+        alert(errorMsg);
+        resetForm();
+      };
+
+
+      xhr.send(file);
+
+      function resetForm() {
+        // Reset the actual form inputs
+        document.getElementById("otaForm").reset();
+
+        // Reset progress bar
+        const progressBar = document.getElementById("uploadProgress");
+        progressBar.value = 0;
+        progressBar.style.display = "none";
+
+        // Reset progress message
+        const progressText = document.getElementById("progressText");
+        progressText.innerText = "";
+
+        // Re-enable the submit buttonS
+        const submitButton = document.querySelector("input[type='submit']");
+        submitButton.disabled = false;
+        
+        uploadBtn.value = "Upload Firmware";
+      }
+
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+This component will provide delta OTA functionality to improve the performance of OTA

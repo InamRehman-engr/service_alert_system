@@ -1,0 +1,177 @@
+menu "Hardware Peripherals"
+    menu "ADC"
+        config HARDWARE_ADC
+            bool "Enable hardware ADC"
+            help
+               Hardware ADC component of esp will be enabled. 
+               Some models of ESP have problem with adc being used and wifi being on at the same time and will give errors. 
+               That is the headache for the user.
+            default n
+        if HARDWARE_ADC
+            rsource "adc/Kconfig"
+        endif
+    endmenu
+    menu "I2C"
+        config HARDWARE_I2C
+            bool "Enable I2C hardware"
+            help
+               enable esp i2c
+            default n
+        if HARDWARE_I2C
+            rsource "i2c/Kconfig"
+        endif
+    endmenu
+    menu "UART"
+        config ENABLE_HARDWARE_UART
+        bool "Enable UART"
+        default n
+
+        if ENABLE_HARDWARE_UART
+            rsource "uart/Kconfig"
+        endif
+    endmenu
+    menu "SPI Master"
+        config  HARDWARE_SPI_MASTER
+            bool "Enable SPI hardware"
+            help
+               enable esp SPI
+            default n
+    if HARDWARE_SPI_MASTER
+        rsource "spi_master/Kconfig"
+    endif
+    endmenu
+
+    menu "RTC"
+        config ENABLE_APP_RTC
+            bool "Enable RTC"
+            default n
+            help
+                Enable/Disable App RTC
+
+            config TIMEZONE_OFFSET
+                depends on ENABLE_APP_RTC
+                int
+                default -720 if TIMEZONE_UTC_MINUS_12
+                default -660 if TIMEZONE_UTC_MINUS_11
+                default -600 if TIMEZONE_UTC_MINUS_10
+                default -570 if TIMEZONE_UTC_MINUS_9_30
+                default -540 if TIMEZONE_UTC_MINUS_9
+                default -480 if TIMEZONE_UTC_MINUS_8
+                default -420 if TIMEZONE_UTC_MINUS_7
+                default -360 if TIMEZONE_UTC_MINUS_6
+                default -300 if TIMEZONE_UTC_MINUS_5
+                default -240 if TIMEZONE_UTC_MINUS_4
+                default -210 if TIMEZONE_UTC_MINUS_3_30
+                default -180 if TIMEZONE_UTC_MINUS_3
+                default -120 if TIMEZONE_UTC_MINUS_2
+                default -60 if TIMEZONE_UTC_MINUS_1
+                default 0 if TIMEZONE_UTC
+                default 60 if TIMEZONE_UTC_PLUS_1
+                default 120 if TIMEZONE_UTC_PLUS_2
+                default 180 if TIMEZONE_UTC_PLUS_3
+                default 210 if TIMEZONE_UTC_PLUS_3_30
+                default 240 if TIMEZONE_UTC_PLUS_4
+                default 270 if TIMEZONE_UTC_PLUS_4_30
+                default 300 if TIMEZONE_UTC_PLUS_5
+                default 330 if TIMEZONE_UTC_PLUS_5_30
+                default 345 if TIMEZONE_UTC_PLUS_5_45
+                default 360 if TIMEZONE_UTC_PLUS_6
+                default 390 if TIMEZONE_UTC_PLUS_6_30
+                default 420 if TIMEZONE_UTC_PLUS_7
+                default 480 if TIMEZONE_UTC_PLUS_8
+                default 525 if TIMEZONE_UTC_PLUS_8_45
+                default 540 if TIMEZONE_UTC_PLUS_9
+                default 570 if TIMEZONE_UTC_PLUS_9_30
+                default 600 if TIMEZONE_UTC_PLUS_10
+                default 630 if TIMEZONE_UTC_PLUS_10_30
+                default 660 if TIMEZONE_UTC_PLUS_11
+                default 720 if TIMEZONE_UTC_PLUS_12
+                default 765 if TIMEZONE_UTC_PLUS_12_45
+                default 780 if TIMEZONE_UTC_PLUS_13
+                default 840 if TIMEZONE_UTC_PLUS_14
+
+                
+            choice
+                depends on ENABLE_APP_RTC
+                prompt "Timezone Configuration"
+                default TIMEZONE_UTC
+        
+                config TIMEZONE_UTC_MINUS_12
+                    bool "UTC-12:00"
+                config TIMEZONE_UTC_MINUS_11
+                    bool "UTC-11:00"
+                config TIMEZONE_UTC_MINUS_10
+                    bool "UTC-10:00"
+                config TIMEZONE_UTC_MINUS_9_30
+                    bool "UTC-09:30"
+                config TIMEZONE_UTC_MINUS_9
+                    bool "UTC-09:00"
+                config TIMEZONE_UTC_MINUS_8
+                    bool "UTC-08:00"
+                config TIMEZONE_UTC_MINUS_7
+                    bool "UTC-07:00"
+                config TIMEZONE_UTC_MINUS_6
+                    bool "UTC-06:00"
+                config TIMEZONE_UTC_MINUS_5
+                    bool "UTC-05:00"
+                config TIMEZONE_UTC_MINUS_4
+                    bool "UTC-04:00"
+                config TIMEZONE_UTC_MINUS_3_30
+                    bool "UTC-03:30"
+                config TIMEZONE_UTC_MINUS_3
+                    bool "UTC-03:00"
+                config TIMEZONE_UTC_MINUS_2
+                    bool "UTC-02:00"
+                config TIMEZONE_UTC_MINUS_1
+                    bool "UTC-01:00"
+                config TIMEZONE_UTC
+                    bool "UTC+00:00"
+                config TIMEZONE_UTC_PLUS_1
+                    bool "UTC+01:00"
+                config TIMEZONE_UTC_PLUS_2
+                    bool "UTC+02:00"
+                config TIMEZONE_UTC_PLUS_3
+                    bool "UTC+03:00"
+                config TIMEZONE_UTC_PLUS_3_30
+                    bool "UTC+03:30"
+                config TIMEZONE_UTC_PLUS_4
+                    bool "UTC+04:00"
+                config TIMEZONE_UTC_PLUS_4_30
+                    bool "UTC+04:30"
+                config TIMEZONE_UTC_PLUS_5
+                    bool "UTC+05:00"
+                config TIMEZONE_UTC_PLUS_5_30
+                    bool "UTC+05:30"
+                config TIMEZONE_UTC_PLUS_5_45
+                    bool "UTC+05:45"
+                config TIMEZONE_UTC_PLUS_6
+                    bool "UTC+06:00"
+                config TIMEZONE_UTC_PLUS_6_30
+                    bool "UTC+06:30"
+                config TIMEZONE_UTC_PLUS_7
+                    bool "UTC+07:00"
+                config TIMEZONE_UTC_PLUS_8
+                    bool "UTC+08:00"
+                config TIMEZONE_UTC_PLUS_8_45
+                    bool "UTC+08:45"
+                config TIMEZONE_UTC_PLUS_9
+                    bool "UTC+09:00"
+                config TIMEZONE_UTC_PLUS_9_30
+                    bool "UTC+09:30"
+                config TIMEZONE_UTC_PLUS_10
+                    bool "UTC+10:00"
+                config TIMEZONE_UTC_PLUS_10_30
+                    bool "UTC+10:30"
+                config TIMEZONE_UTC_PLUS_11
+                    bool "UTC+11:00"
+                config TIMEZONE_UTC_PLUS_12
+                    bool "UTC+12:00"
+                config TIMEZONE_UTC_PLUS_12_45
+                    bool "UTC+12:45"
+                config TIMEZONE_UTC_PLUS_13
+                    bool "UTC+13:00"
+                config TIMEZONE_UTC_PLUS_14
+                    bool "UTC+14:00"
+            endchoice
+    endmenu
+endmenu

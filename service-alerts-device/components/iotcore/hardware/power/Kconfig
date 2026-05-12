@@ -1,0 +1,9 @@
+menu "Power Configurations"
+    config ENABLE_SBS_BATTERY
+        bool "Enable SBS Battery"
+        default n
+    config BQ_ADDRESS
+        hex "Battery BQ Address"
+        default 0x0B
+        depends on ENABLE_SBS_BATTERY
+endmenu

@@ -1,0 +1,47 @@
+menu "System config"
+
+    config ENABLE_OTA
+        bool "Enable OTA"
+        default n
+        help
+            Enable or disable OTA
+    
+    config MAX_OTA_RETRIES
+        depends on ENABLE_OTA
+        int "Max OTA retries"
+        default 5
+        help
+            The maximum number of OTA retries to be allowed
+    
+    config HTTP_FILE_DOWNLOAD_TASK_PRIORITY
+        depends on ENABLE_OTA
+        int "Task priority for HTTP download of OTA"
+        default 10
+        range 1 24
+        help
+            The task priority for HTTP download of OTA. Highest priority is 24.
+        
+    if ENABLE_OTA
+        rsource "firmware_updates/delta_ota/Kconfig"
+    endif
+    
+    config NATIVE_OTA_TASK_PRIORITY
+        depends on ENABLE_OTA
+        int "Native OTA Task Priority"
+        default 10
+        range 1 24
+        help
+            The native OTA task priority. Highest priority is 24.
+
+    config ENABLE_SYSTEM_MONITORING
+        bool "Enable system monitoring features"
+        default y
+        depends on ENABLE_NVS && ENABLE_IOTCORE_EVENTS
+
+    config ENABLE_SYSTEM_STATUS_REPORTING
+            bool "Enable system reporting features"
+            default y
+            depends on ENABLE_SYSTEM_MONITORING
+    
+        
+endmenu

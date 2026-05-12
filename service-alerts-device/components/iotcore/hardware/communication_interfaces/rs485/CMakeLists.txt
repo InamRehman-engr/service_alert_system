@@ -1,0 +1,4 @@
+if(CONFIG_ENABLE_RS485)
+list(APPEND srcs "${CMAKE_CURRENT_LIST_DIR}/rs485.c")
+list(APPEND includes "${CMAKE_CURRENT_LIST_DIR}/")
+endif()

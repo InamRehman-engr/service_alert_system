@@ -1,0 +1,11 @@
+config ENABLE_CURRENT_TRANSFORMER
+    bool "Enable Current Transformer"
+    default n
+    
+config ENABLE_INA219
+    bool "Enable INA219 Sensor"
+    default n
+
+config ENABLE_INA226
+    bool "Enable INA226 Sensor"
+    default n

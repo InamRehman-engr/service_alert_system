@@ -1,0 +1,4 @@
+if(CONFIG_ENABLE_ADE7758)
+   list(APPEND srcs "${CMAKE_CURRENT_LIST_DIR}/ADE7758.c")
+   list(APPEND includes "${CMAKE_CURRENT_LIST_DIR}/")
+endif()
