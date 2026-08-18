@@ -12,6 +12,10 @@ This repository contains three related components:
 
 The system is built around MQTT topics such as `alert/button`, `alert/kitchen`, `alert/watchok`, and `alert/ads`.
 
+### System Flow
+
+![Service Alert System Flow](public/Flow.png)
+
 ## Components
 
 ### service-alerts-app
